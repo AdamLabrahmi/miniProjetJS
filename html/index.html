@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+
+    <div class="bg-white p-8 rounded-lg shadow-xl w-96">
+        <div class="flex justify-center mb-6">
+            <img src="https://via.placeholder.com/80" alt="Logo" class="w-20 h-20">
+        </div>
+        <h2 class="text-3xl font-semibold text-center text-gray-800 mb-6">Se connecter</h2>
+        <form id="loginForm" class="space-y-6">
+            <div>
+                <label for="username" class="block text-gray-700 text-sm font-medium">Nom d'utilisateur</label>
+                <input type="text" id="username" placeholder="Nom d'utilisateur" class="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out" required>
+            </div>
+            <div>
+                <label for="password" class="block text-gray-700 text-sm font-medium">Mot de passe</label>
+                <input type="password" id="password" placeholder="Mot de passe" class="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out" required>
+            </div>
+            <button type="submit" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out">Connexion</button>
+        </form>
+        <p id="error-message" class="text-red-500 text-center mt-4 hidden"></p>
+    </div>
+
+    <script src="../js/login.js"></script>
+</body>
+</html>

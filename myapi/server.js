@@ -1,10 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const cors = require('cors');
+const cors = require('cors');
 
 const app = express();
 app.use(bodyParser.json());
-// app.use(cors());
+app.use(cors());
 
 // Données simulées
 let livreurs = [
@@ -21,7 +21,7 @@ let livreurs = [
 ];
 
 let clients = [
-    { id: 1, nom: "Yassine", prenom: "Belkacem", telephone: "0611223344", email: "yassine@gmail.com", adresse: "Casablanca" },
+    { id: 1, nom: "Bourak", prenom: "Ali", telephone: "0693403054", email: "alibusinessbourak@gmail.com", adresse: "Casablanca" },
     { id: 2, nom: "Amina", prenom: "Elhajji", telephone: "0622334455", email: "amina@gmail.com", adresse: "Rabat" },
     { id: 3, nom: "Omar", prenom: "Saidi", telephone: "0633445566", email: "omar@gmail.com", adresse: "Marrakech" },
     { id: 4, nom: "Karim", prenom: "Bouzidi", telephone: "0644556677", email: "karim@gmail.com", adresse: "Fès" },
@@ -60,16 +60,16 @@ let commandes = [
 ];
 
 let zones = [
-    { id: 1, nom: "Maarif", ville: "Casablanca", code: "CAS", livreurs_disponibles: 5 },
-    { id: 2, nom: "Agdal", ville: "Rabat", code: "RAB", livreurs_disponibles: 4 },
-    { id: 3, nom: "Sidi Bernoussi", ville: "Casablanca", code: "CAS", livreurs_disponibles: 3 },
-    { id: 4, nom: "Hay Riad", ville: "Rabat", code: "RAB", livreurs_disponibles: 2 },
-    { id: 5, nom: "Ain Sebaa", ville: "Casablanca", code: "CAS", livreurs_disponibles: 6 },
-    { id: 6, nom: "Yacoub El Mansour", ville: "Rabat", code: "RAB", livreurs_disponibles: 7 },
-    { id: 7, nom: "Oulfa", ville: "Casablanca", code: "CAS", livreurs_disponibles: 8 },
-    { id: 8, nom: "Hassan", ville: "Rabat", code: "RAB", livreurs_disponibles: 9 },
-    { id: 9, nom: "Anfa", ville: "Casablanca", code: "CAS", livreurs_disponibles: 10 },
-    { id: 10, nom: "Souissi", ville: "Rabat", code: "RAB", livreurs_disponibles: 1 }
+    { id: 1, nom: "Maarif", ville: "Casablanca", code: "CAS" },
+    { id: 2, nom: "Agdal", ville: "Rabat", code: "RAB" },
+    { id: 3, nom: "Sidi Bernoussi", ville: "Casablanca", code: "CAS" },
+    { id: 4, nom: "Hay Riad", ville: "Rabat", code: "RAB" },
+    { id: 5, nom: "Ain Sebaa", ville: "Casablanca", code: "CAS" },
+    { id: 6, nom: "Yacoub El Mansour", ville: "Rabat", code: "RAB" },
+    { id: 7, nom: "Oulfa", ville: "Casablanca", code: "CAS" },
+    { id: 8, nom: "Hassan", ville: "Rabat", code: "RAB" },
+    { id: 9, nom: "Anfa", ville: "Casablanca", code: "CAS" },
+    { id: 10, nom: "Souissi", ville: "Rabat", code: "RAB" }
 ];
 
 // Routes API

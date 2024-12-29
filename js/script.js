@@ -1,32 +1,7 @@
-// document.getElementById('login-form').addEventListener('submit', function(event) {
-//     event.preventDefault(); 
-
-    
-//     const adminUsername = 'admin';
-//     const adminPassword = 'admin';
-
-    
-//     const username = document.getElementById('username').value;
-//     const password = document.getElementById('password').value;
-
-    
-//     if (username === adminUsername && password === adminPassword) {
-//         alert('Login réussi !');
-//         window.location.href = 'dashboard.html'; 
-//     } else {
-//         const errorMessage = document.getElementById('error-message');
-//         errorMessage.textContent = 'Nom d\'utilisateur ou mot de passe incorrect.';
-//         errorMessage.style.display = 'block';
-//     }
-// });
-
-
-// fetch('http://127.0.0.1:3000/livreurs')
-//     .then(response => response.json())
-//     .then(data => console.log(data))
-//     .catch(error => console.error('Erreur:', error));
-
-
+if (localStorage.getItem('authenticated') !== 'true') {
+    localStorage.setItem('redirectAfterLogin', window.location.href);
+    window.location.href = 'index.html';
+}
     // URL de l'API
 const apiUrl = 'http://127.0.0.1:3000/livreurs';
 const apiUrlc = 'http://127.0.0.1:3000/clients';
@@ -40,7 +15,7 @@ const apiUrlzone = 'http://127.0.0.1:3000/zones';
 // Fonction pour afficher les livreurs dans le tableau
 function afficherLivreurs(livreurs) {
     const tableBody = document.querySelector('#livreurs-table tbody');
-    tableBody.innerHTML = ''; // Vider le tableau avant d'ajouter les nouvelles données
+    tableBody.innerHTML = ''; 
 
     livreurs.forEach(livreur => {
         const row = document.createElement('tr');
@@ -65,7 +40,7 @@ fetch(apiUrl)
 
     function afficherClients(clients) {
         const tableBody = document.querySelector('#clients-table tbody');
-        tableBody.innerHTML = ''; // Vider le tableau avant d'ajouter les nouvelles données
+        tableBody.innerHTML = ''; 
     
         clients.forEach(client => {
             const row = document.createElement('tr');
@@ -88,7 +63,7 @@ fetch(apiUrl)
 
     function afficherProduits(produits) {
         const tableBody = document.querySelector('#produits-table tbody');
-        tableBody.innerHTML = ''; // Vider le tableau avant d'ajouter les nouvelles données
+        tableBody.innerHTML = ''; 
     
         produits.forEach(produit => {
             const row = document.createElement('tr');
@@ -109,7 +84,7 @@ fetch(apiUrl)
 
     function afficherCommandes(commandes) {
         const tableBody = document.querySelector('#commandes-table tbody');
-        tableBody.innerHTML = ''; // Vider le tableau avant d'ajouter les nouvelles données
+        tableBody.innerHTML = ''; 
     
         commandes.forEach(commande => {
             const row = document.createElement('tr');
@@ -134,15 +109,15 @@ fetch(apiUrl)
 
     function afficherZone(zones) {
         const tableBody = document.querySelector('#zones-table tbody');
-        tableBody.innerHTML = ''; // Vider le tableau avant d'ajouter les nouvelles données
+        tableBody.innerHTML = ''; 
     
         zones.forEach(zone => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${zone.id}</td>
                 <td>${zone.nom}</td>
+                <td>${zone.ville}</td>
                 <td>${zone.code}</td>
-                <td>${zone.livreurs_disponibles}</td>
             `;
             tableBody.appendChild(row);
         });
@@ -157,31 +132,41 @@ fetch(apiUrl)
 
 
     // =======================
-    const apiUrlLivreurs = 'http://localhost:3000/livreurs'; // URL pour l'API des livreurs
 
 // Fonction pour afficher les informations sur la zone et la ville d'un livreur
-function afficherZoneLivreur(livreur) {
+function afficherZoneLivreur(livreur, zones) {
     const resultDiv = document.querySelector('#livreur-zone-result');
     if (livreur) {
-        resultDiv.innerHTML = `
+        const zone = zones.find(zone => zone.id === livreur.zone_id);
+        if (zone) {
+            // resultDiv.innerHTML = `Le livreur ${livreur.nom} est dans la zone ${zone.nom} (${zone.ville}).`;
+            resultDiv.innerHTML = `
             <p><strong>Nom du livreur :</strong> ${livreur.nom}</p>
-            <p><strong>Zone :</strong> ${livreur.zone}</p>
-            <p><strong>Ville :</strong> ${livreur.ville}</p>
+            <p><strong>Zone :</strong> ${zone.nom}</p>
+            <p><strong>Ville :</strong> ${zone.ville}</p>
         `;
+
+        } else {
+            resultDiv.innerHTML = 'Zone non trouvée.';
+        }
     } else {
-        resultDiv.innerHTML = '<p style="color: red;">Livreur non trouvé.</p>';
+        resultDiv.innerHTML = 'Livreur non trouvé.';
     }
 }
 
-// Fonction pour rechercher un livreur par son nom
+// Fonction pour rechercher un livreur par nom
 function rechercherLivreur() {
     const searchInput = document.querySelector('#search-livreur-input').value.toLowerCase();
-
-    fetch(apiUrlLivreurs) // Récupère les données des livreurs depuis l'API
+    fetch(apiUrl)
         .then(response => response.json())
-        .then(data => {
-            const livreur = data.find(livreur => livreur.nom.toLowerCase().includes(searchInput));
-            afficherZoneLivreur(livreur); // Appelle la fonction pour afficher les informations du livreur
+        .then(livreurs => {
+            const livreur = livreurs.find(livreur => livreur.nom.toLowerCase().includes(searchInput));
+            fetch(apiUrlzone)
+                .then(response => response.json())
+                .then(zones => {
+                    afficherZoneLivreur(livreur, zones);
+                })
+                .catch(error => console.error('Erreur:', error));
         })
         .catch(error => console.error('Erreur:', error));
 }
@@ -189,3 +174,27 @@ function rechercherLivreur() {
 // Ajout d'un event listener pour effectuer une recherche à chaque saisie dans l'input
 document.querySelector('#search-livreur-input').addEventListener('input', rechercherLivreur);
 
+// Initial fetch to display all livreurs and zones
+fetch(apiUrl)
+    .then(response => response.json())
+    .then(data => afficherLivreurs(data))
+    .catch(error => console.error('Erreur:', error));
+
+fetch(apiUrlzone)
+    .then(response => response.json())
+    .then(data => afficherZones(data))
+    .catch(error => console.error('Erreur:', error));
+
+
+
+    // downloadExcel;
+    function downloadExcel(tableId) {
+        // Récupérer la table par son ID
+        const table = document.getElementById(tableId);
+        
+        // Convertir la table en données JSON
+        const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+    
+        // Générer le fichier Excel
+        XLSX.writeFile(workbook, `${tableId}.xlsx`);
+    }
