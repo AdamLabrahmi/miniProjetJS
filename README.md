@@ -1,8 +1,8 @@
-# LogistiQ - Tableau de Bord
+# Livorix - Tableau de Bord
 
 ## Description
 
-LogistiQ est une application Gestion d’un service de livraison pour la gestion des livreurs, clients, produits, commandes et zones. Cette application utilise HTML, CSS (avec Tailwind CSS), JavaScript et Font Awesome pour créer une interface utilisateur interactive et moderne.
+Livorix est une application Gestion d’un service de livraison pour la gestion des livreurs, clients, produits, commandes et zones. Cette application utilise HTML, CSS (avec Tailwind CSS), JavaScript et Font Awesome pour créer une interface utilisateur interactive et moderne.
 
 ## Fonctionnalités
 
@@ -21,7 +21,7 @@ LogistiQ est une application Gestion d’un service de livraison pour la gestion
 1. Clonez le dépôt sur votre machine locale :
 
     ```bash
-    git clone https://github.com/votre-utilisateur/logistiq-dashboard.git
+    git clone https://github.com/votre-utilisateur/Livorix-dashboard.git
     ```
 
 2. Ouvrez le projet dans votre éditeur de code préféré (par exemple, Visual Studio Code).

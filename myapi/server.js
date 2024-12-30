@@ -23,14 +23,14 @@ let livreurs = [
 let clients = [
     { id: 1, nom: "Bourak", prenom: "Ali", telephone: "0693403054", email: "alibusinessbourak@gmail.com", adresse: "Casablanca" },
     { id: 2, nom: "Amina", prenom: "Elhajji", telephone: "0622334455", email: "amina@gmail.com", adresse: "Rabat" },
-    { id: 3, nom: "Omar", prenom: "Saidi", telephone: "0633445566", email: "omar@gmail.com", adresse: "Marrakech" },
-    { id: 4, nom: "Karim", prenom: "Bouzidi", telephone: "0644556677", email: "karim@gmail.com", adresse: "Fès" },
-    { id: 5, nom: "Salma", prenom: "Bensouda", telephone: "0655667788", email: "salma@gmail.com", adresse: "Tanger" },
-    { id: 6, nom: "Nabil", prenom: "Haddadi", telephone: "0666778899", email: "nabil@gmail.com", adresse: "Agadir" },
-    { id: 7, nom: "Fatima", prenom: "Zahra", telephone: "0677889900", email: "fatima@gmail.com", adresse: "Oujda" },
-    { id: 8, nom: "Rachid", prenom: "Benali", telephone: "0688990011", email: "rachid@gmail.com", adresse: "Kenitra" },
-    { id: 9, nom: "Laila", prenom: "Mouline", telephone: "0699001122", email: "laila@gmail.com", adresse: "Tetouan" },
-    { id: 10, nom: "Samir", prenom: "Fakhreddine", telephone: "0600112233", email: "samir@gmail.com", adresse: "El Jadida" }
+    { id: 3, nom: "Omar", prenom: "Saidi", telephone: "0633445566", email: "omar@gmail.com", adresse: "Rabat" },
+    { id: 4, nom: "Karim", prenom: "Bouzidi", telephone: "0644556677", email: "karim@gmail.com", adresse: "Casablanca" },
+    { id: 5, nom: "Salma", prenom: "Bensouda", telephone: "0655667788", email: "salma@gmail.com", adresse: "Rabat" },
+    { id: 6, nom: "Nabil", prenom: "Haddadi", telephone: "0666778899", email: "nabil@gmail.com", adresse: "Rabat" },
+    { id: 7, nom: "Fatima", prenom: "Zahra", telephone: "0677889900", email: "fatima@gmail.com", adresse: "Casablanca" },
+    { id: 8, nom: "Rachid", prenom: "Benali", telephone: "0688990011", email: "rachid@gmail.com", adresse: "Casablanca" },
+    { id: 9, nom: "Laila", prenom: "Mouline", telephone: "0699001122", email: "laila@gmail.com", adresse: "Casablanca" },
+    { id: 10, nom: "Samir", prenom: "Fakhreddine", telephone: "0600112233", email: "samir@gmail.com", adresse: "Rabat" }
 ];
 
 let produits = [

@@ -2,6 +2,17 @@ if (localStorage.getItem('authenticated') !== 'true') {
     localStorage.setItem('redirectAfterLogin', window.location.href);
     window.location.href = 'index.html';
 }
+
+// sidebar
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
+}
+
     // URL de l'API
 const apiUrl = 'http://127.0.0.1:3000/livreurs';
 const apiUrlc = 'http://127.0.0.1:3000/clients';

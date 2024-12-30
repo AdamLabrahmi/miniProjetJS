@@ -3,101 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de Bord - LogistiQ</title>
+    <title>Tableau de Bord - Livorix</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script>
-        
-    </script>
-    </head>
+    <link rel="icon" href="/imgs/logo.webp" type="image/webp">
+</head>
 <body class="bg-gray-100 font-sans">
-    <header class="bg-blue-600 text-white p-4 shadow-lg">
+    <header class="bg-gray-800 text-white p-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-semibold">LogistiQ</h1>
-            <nav>
-                <ul class="flex space-x-6">
-                <li><a href="index.html" class="hover:text-yellow-400"><i class="fas fa-sign-out-alt"></i> LogOut</a></li>
+            <div class="flex items-center space-x-4">
+                <img src="/imgs/logo.webp" alt="Logo" class="w-20 h-20 rounded-full border-2 border-gray-300 shadow-md">
+                <h1 class="text-2xl font-semibold">Livorix</h1> 
+            </div>
+            <nav class="flex items-center space-x-6">
+                <button id="menu-button" class="md:hidden hover:text-yellow-400" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i> Menu
+                </button>
+                <ul class="hidden md:flex space-x-6">
+                    <li><a href="index.html" class="hover:text-yellow-400"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <div class="flex min-h-screen">
-            <aside class="bg-gray-800 text-white w-64 p-6 space-y-6">
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <aside id="sidebar" class="bg-gray-800 text-white w-full md:w-64 p-6 space-y-6 md:block hidden">
             <h2 class="text-xl font-semibold">Menu</h2>
             <ul>
-            <li><a href="Liste.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-list"></i> <strong>Liste</strong></a></li>
-
-            <li class="relative">
-                <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-ajout')"><i class="fas fa-plus"></i> <strong>Ajout</strong></a>
-                <ul id="dropdown-ajout" class="hidden pl-4 space-y-2">
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Livreur</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Client</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Produit</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Commande</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Zone</a></li>
-                </ul>
-            </li>
-
-            <li class="relative">
-                <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-cherche')"><i class="fas fa-search"></i> <strong>Chercher</strong></a>
-                <ul id="dropdown-cherche" class="hidden pl-4 space-y-2">
-                    <li><a href="Liste.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Tri</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Filtrer</a></li>
-                </ul>
-            </li>
-
-            
-            
-            <li class="relative">
-                <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-consulter')"><i class="fas fa-eye"></i> <strong>Consulter</strong></a>
-                <ul id="dropdown-consulter" class="hidden pl-4 space-y-2">
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Livreur</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Client</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Produit</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Commande</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Zone</a></li>
-                </ul>
-            </li>
-            
-            <li class="relative">
-                <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-modifier')"><i class="fas fa-edit"></i> <strong>Modifier</strong></a>
-                <ul id="dropdown-modifier" class="hidden pl-4 space-y-2">
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Livreur</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Client</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Produit</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Commande</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Zone</a></li>
-                </ul>
-            </li>
-
-            <li class="relative">
-                <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-supprimer')"><i class="fas fa-trash"></i> <strong>Supprimer</strong></a>
-                <ul id="dropdown-supprimer" class="hidden pl-4 space-y-2">
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Livreur</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Client</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Produit</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Commande</a></li>
-                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Zone</a></li>
-                </ul>
-            </li>
-
-            <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-chart-bar"></i> <strong>Statistique</strong></a></li>
-            <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-download"></i> <strong>Telecharger</strong></a></li>
-            <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-chart-pie"></i> <strong>Graphe</strong></a></li>
+                <li><a href="Liste.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-list"></i> <strong>Liste</strong></a></li>
+                <li class="relative">
+                    <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-ajout')"><i class="fas fa-plus"></i> <strong>Ajout</strong></a>
+                    <ul id="dropdown-ajout" class="hidden pl-4 space-y-2">
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Livreur</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Client</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Produit</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Commande</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Zone</a></li>
+                    </ul>
+                </li>
+                <li class="relative">
+                    <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-cherche')"><i class="fas fa-search"></i> <strong>Chercher</strong></a>
+                    <ul id="dropdown-cherche" class="hidden pl-4 space-y-2">
+                        <li><a href="Liste.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Tri</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Filtrer</a></li>
+                    </ul>
+                </li>
+                <li class="relative">
+                    <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-consulter')"><i class="fas fa-eye"></i> <strong>Consulter</strong></a>
+                    <ul id="dropdown-consulter" class="hidden pl-4 space-y-2">
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Livreur</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Client</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Produit</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Commande</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Zone</a></li>
+                    </ul>
+                </li>
+                <li class="relative">
+                    <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-modifier')"><i class="fas fa-edit"></i> <strong>Modifier</strong></a>
+                    <ul id="dropdown-modifier" class="hidden pl-4 space-y-2">
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Livreur</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Client</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Produit</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Commande</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Zone</a></li>
+                    </ul>
+                </li>
+                <li class="relative">
+                    <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-supprimer')"><i class="fas fa-trash"></i> <strong>Supprimer</strong></a>
+                    <ul id="dropdown-supprimer" class="hidden pl-4 space-y-2">
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Livreur</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Client</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Produit</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Commande</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Zone</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-chart-bar"></i> <strong>Statistique</strong></a></li>
+                <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-download"></i> <strong>Telecharger</strong></a></li>
+                <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-chart-pie"></i> <strong>Graphe</strong></a></li>
             </ul>
         </aside>
 
         <main class="bg-white flex-1 p-8">
-            
+            <section class="p-6 rounded-lg">
+            <h2 class="text-3xl font-bold mb-4 text-blue-600">Bienvenue sur Livorix</h2>
+            <p class="mb-4 text-gray-700">Livorix est votre solution ultime pour la gestion Livorixue. Nous offrons une plateforme complète pour gérer vos livreurs, clients, produits, commandes et zones de livraison.</p>
+            <p class="mb-4 text-gray-700 font-semibold">Cet espace est réservé à l'administration.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-4 rounded-lg hover:shadow-lg transition-shadow duration-300">
+                <h3 class="text-xl font-semibold mb-2 text-blue-600">Gestion des Livreurs</h3>
+                <p class="text-gray-700">Ajoutez, modifiez, consultez et supprimez les livreurs facilement.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg hover:shadow-lg transition-shadow duration-300">
+                <h3 class="text-xl font-semibold mb-2 text-blue-600">Gestion des Clients</h3>
+                <p class="text-gray-700">Gérez vos clients avec des options complètes pour l'ajout, la modification, la consultation et la suppression.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg hover:shadow-lg transition-shadow duration-300">
+                <h3 class="text-xl font-semibold mb-2 text-blue-600">Gestion des Produits</h3>
+                <p class="text-gray-700">Ajoutez, modifiez, consultez et supprimez vos produits en toute simplicité.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg hover:shadow-lg transition-shadow duration-300">
+                <h3 class="text-xl font-semibold mb-2 text-blue-600">Gestion des Commandes</h3>
+                <p class="text-gray-700">Suivez et gérez vos commandes avec des outils puissants et intuitifs.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg hover:shadow-lg transition-shadow duration-300">
+                <h3 class="text-xl font-semibold mb-2 text-blue-600">Gestion des Zones</h3>
+                <p class="text-gray-700">Définissez et gérez les zones de livraison pour optimiser vos opérations.</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg hover:shadow-lg transition-shadow duration-300">
+                <h3 class="text-xl font-semibold mb-2 text-blue-600">Statistiques et Rapports</h3>
+                <p class="text-gray-700">Accédez à des statistiques détaillées et téléchargez des rapports pour une meilleure prise de décision.</p>
+                </div>
+            </div>
+            </section>
+            <section class="bg-gray-200 p-6 rounded-lg mt-6">
+            <h2 class="text-3xl font-bold mb-4 text-blue-600">Pourquoi choisir Livorix ?</h2>
+            <p class="mb-4 text-gray-700">Livorix est conçu pour simplifier et optimiser vos opérations Livorixues. Voici quelques raisons pour lesquelles vous devriez choisir Livorix :</p>
+            <ul class="list-disc pl-6 space-y-2 text-gray-700">
+                <li>Interface utilisateur intuitive et facile à utiliser.</li>
+                <li>Outils puissants pour la gestion des livreurs, clients, produits, commandes et zones.</li>
+                <li>Statistiques détaillées et rapports pour une meilleure prise de décision.</li>
+                <li>Support client réactif et assistance continue.</li>
+                <li>Options de personnalisation pour répondre à vos besoins spécifiques.</li>
+                <li>Possibilité de télécharger les données sous format CSV.</li>
+                <li>Visualisation des données avec des graphiques interactifs.</li>
+            </ul>
+            </section>
         </main>
     </div>
-
     <footer class="bg-gray-800 text-white text-center py-4 mt-auto">
         <div class="container mx-auto">
-            <p>&copy; 2023 LogistiQ. Tous droits réservés.</p>
+            <p>&copy; 2023 Livorix. Tous droits réservés.</p>
         </div>
     </footer>
-<script src="../js/dashboard.js"></script>
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('hidden');
+        }
+
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            dropdown.classList.toggle('hidden');
+        }
+    </script>
 </body>
 </html>

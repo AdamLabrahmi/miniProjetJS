@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tableau de Bord - LogistiQ</title>
+    <title>Tableau de Bord - Livorix</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Inclure la bibliothèque SheetJS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <!-- Inclure la bibliothèque SheetJS CSV-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <link rel="icon" href="/imgs/logo.webp" type="image/webp" >
+    <script>
+        
 
+        
+    </script>
 </head>
 <body class="bg-gray-100 font-sans">
     <header class="bg-blue-600 text-white p-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-semibold">LogistiQ</h1>
+            <div class="flex items-center space-x-4">
+                <img src="/imgs/logo.webp" alt="Logo" class="w-20 h-20 rounded-full border-2 border-gray-300 shadow-md">
+                <h1 class="text-2xl font-semibold">Livorix</h1>
+            </div>
             <nav>
                 <ul class="flex space-x-6">
                     <li><a href="index.html" class="hover:text-yellow-400"><i class="fas fa-sign-out-alt"></i> LogOut</a></li>
@@ -27,27 +35,72 @@
         <aside class="bg-gray-800 text-white w-64 p-6 space-y-6">
             <h2 class="text-xl font-semibold">Menu</h2>
             <ul>
-                <li><a href="Liste.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-list"></i> <strong>Liste</strong></a></li>
-                <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-plus"></i> <strong>Ajout</strong></a></li>
-                <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-search"></i> <strong>Chercher</strong></a></li>
-                <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-eye"></i> <strong>Consulter</strong></a></li>
-                <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-trash"></i> <strong>Supprimer</strong></a></li>
-                <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-chart-bar"></i> <strong>Statistique</strong></a></li>
-                <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-download"></i> <strong>Telecharger</strong></a></li>
-                <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-chart-pie"></i> <strong>Graphe</strong></a></li>
+            <li><a href="dashboard.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-list"></i> <strong>Page d'accueil</strong></a></li>
+
+            <li class="relative">
+                <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-ajout')"><i class="fas fa-plus"></i> <strong>Ajout</strong></a>
+                <ul id="dropdown-ajout" class="hidden pl-4 space-y-2">
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Livreur</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Client</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Produit</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Commande</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Zone</a></li>
+                </ul>
+            </li>
+
+            <li class="relative">
+                <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-cherche')"><i class="fas fa-search"></i> <strong>Chercher</strong></a>
+                <ul id="dropdown-cherche" class="hidden pl-4 space-y-2">
+                    <li><a href="Liste.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Tri</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Filtrer</a></li>
+                </ul>
+            </li>
+
+            <li class="relative">
+                <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-consulter')"><i class="fas fa-eye"></i> <strong>Consulter</strong></a>
+                <ul id="dropdown-consulter" class="hidden pl-4 space-y-2">
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Livreur</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Client</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Produit</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Commande</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Zone</a></li>
+                </ul>
+            </li>
+
+            <li class="relative">
+                <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-modifier')"><i class="fas fa-edit"></i> <strong>Modifier</strong></a>
+                <ul id="dropdown-modifier" class="hidden pl-4 space-y-2">
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Livreur</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Client</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Produit</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Commande</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Modifier Zone</a></li>
+                </ul>
+            </li>
+
+            <li class="relative">
+                <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-supprimer')"><i class="fas fa-trash"></i> <strong>Supprimer</strong></a>
+                <ul id="dropdown-supprimer" class="hidden pl-4 space-y-2">
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Livreur</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Client</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Produit</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Commande</a></li>
+                    <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Supprimer Zone</a></li>
+                </ul>
+            </li>
+
+            <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-chart-bar"></i> <strong>Statistique</strong></a></li>
+            <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-download"></i> <strong>Telecharger</strong></a></li>
+            <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-chart-pie"></i> <strong>Graphe</strong></a></li>
             </ul>
         </aside>
 
-        <!-- Main Content -->
-        <!-- <main class="bg-blue-100 flex-1 p-8 overflow-auto"> -->
-            <main class="bg-white flex-1 p-8">
-            <div class="container mx-auto space-y-8">
-                <!-- <input type="text" id="search-livreur-input" placeholder="Rechercher un livreur" class="mb-4 p-2 border border-gray-300 rounded-md w-full">
-                <div id="livreur-zone-result" class="mb-4"></div> -->
-
+        
+    <main class="bg-white flex-1 p-8">
+        <div class="container mx-auto space-y-8">
                 <h2 class="text-2xl font-semibold">Liste</h2>
                 <p class="text-lg">Livreurs</p>
- <table id="livreurs-table" class="min-w-full bg-white border border-gray-200 text-center rounded-md shadow-md">
+                <table id="livreurs-table" class="min-w-full bg-white border border-gray-200 text-center rounded-md shadow-md">
 
                     <thead>
                         <tr>
@@ -59,7 +112,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Dynamic Data Here -->
                     </tbody>
                 </table>
                 <button onclick="downloadExcel('livreurs-table')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Télécharger Excel</button>
@@ -76,7 +128,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Dynamic Data Here -->
                     </tbody>
                 </table>
                 <button onclick="downloadExcel('clients-table')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Télécharger Excel</button>
@@ -94,7 +145,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Dynamic Data Here -->
                     </tbody>
                 </table>
                 <button onclick="downloadExcel('produits-table')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Télécharger Excel</button>
@@ -113,7 +163,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Dynamic Data Here -->
                     </tbody>
                 </table>
                 <button onclick="downloadExcel('commandes-table')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Télécharger Excel</button>
@@ -129,7 +178,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Dynamic Data Here -->
                     </tbody>
                 </table>
                 <button onclick="downloadExcel('zones-table')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-md">Télécharger Excel</button>
@@ -139,7 +187,7 @@
 
     <footer class="bg-gray-800 text-white text-center py-4 mt-auto">
         <div class="container mx-auto">
-            <p>&copy; 2023 LogistiQ. Tous droits réservés.</p>
+            <p>&copy; 2025 Livorix. Tous droits réservés.</p>
         </div>
     </footer>
 
