@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Clients</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-white">
+
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-semibold text-center mb-6">Liste des Clients</h1>
+        <table class="min-w-full table-auto bg-white border border-gray-300">
+            <thead>
+                <tr>
+                    <th class="px-4 py-2 border-b">Nom</th>
+                    <th class="px-4 py-2 border-b">Prénom</th>
+                    <th class="px-4 py-2 border-b">Téléphone</th>
+                    <th class="px-4 py-2 border-b">Email</th>
+                    <th class="px-4 py-2 border-b">Adresse</th>
+                    <th class="px-4 py-2 border-b">Actions</th> <!-- Nouvelle colonne pour les actions -->
+                </tr>
+            </thead>
+            <tbody id="clientsTable">
+                <!-- Les données des clients seront injectées ici par JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="../../js/clientsjs/clients.js"></script>
+
+</body>
+</html>

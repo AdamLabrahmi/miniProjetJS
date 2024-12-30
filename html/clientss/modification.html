@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modification des Données du Client</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Modifier les Données du Client</h1>
+    <form id="modification-client-form">
+        <div>
+            <label for="client-id">ID du Client:</label>
+            <input type="text" id="client-id" name="client-id" required>
+        </div>
+
+        <!-- Ces champs seront cachés initialement et seront affichés après avoir récupéré les données -->
+        <div id="client-info" style="display: none;">
+            <div>
+                <label for="client-name">Nom:</label>
+                <input type="text" id="client-name" name="client-name" required>
+            </div>
+            <div>
+                <label for="client-email">Email:</label>
+                <input type="email" id="client-email" name="client-email" required>
+            </div>
+            <div>
+                <label for="client-phone">Téléphone:</label>
+                <input type="tel" id="client-phone" name="client-phone" required>
+            </div>
+            <div>
+                <label for="client-address">Adresse:</label>
+                <input type="text" id="client-address" name="client-address" required>
+            </div>
+            <div>
+                <button id="modifier-client-btn" type="submit">Modifier</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        // Quand l'ID du client est saisi et que le champ perd le focus (blur)
+        document.getElementById('client-id').addEventListener('blur', function() {
+            const clientId = this.value;
+            if (clientId) {
+                // Faire une requête GET pour récupérer les données du client
+                fetch(`http://localhost:3000/clients/${clientId}`)
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json(); // Si la réponse est OK, retourner les données du client
+                        } else {
+                            throw new Error('Client non trouvé');
+                        }
+                    })
+                    .then(clientData => {
+                        // Remplir les champs du formulaire avec les données du client
+                        document.getElementById('client-name').value = clientData.name;
+                        document.getElementById('client-email').value = clientData.email;
+                        document.getElementById('client-phone').value = clientData.phone;
+                        document.getElementById('client-address').value = clientData.address;
+
+                        // Afficher les autres champs du formulaire pour modification
+                        document.getElementById('client-info').style.display = 'block';
+                    })
+                    .catch(error => {
+                        alert(error.message); // Si une erreur se produit (client non trouvé)
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

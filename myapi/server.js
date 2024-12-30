@@ -86,12 +86,24 @@ app.post('/livreurs', (req, res) => {
     res.status(201).json(livreur);
 });
 
+//CLIENTS
+// app.post('/clients', (req, res) => {
+//     const client = req.body;
+//     client.id = clients.length + 1;
+//     clients.push(client);
+//     res.status(201).json(client);
+// });
+
 app.post('/clients', (req, res) => {
-    const client = req.body;
-    client.id = clients.length + 1;
-    clients.push(client);
-    res.status(201).json(client);
+    const nouveauClient = req.body;  // Client envoyé dans la requête
+    nouveauClient.id = clients.length + 1; // Générez un nouvel ID
+    clients.push(nouveauClient); // Ajoutez le client à la liste
+    res.status(201).json(nouveauClient); // Réponse avec le client ajouté
 });
+app.get('/clients', (req, res) => {
+    res.json(clients); // Send clients data as JSON
+});
+
 
 app.post('/produits', (req, res) => {
     const produit = req.body;
