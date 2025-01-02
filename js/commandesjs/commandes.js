@@ -1,24 +1,33 @@
-// ListerCommandes
+// ListerCommandes lakhar
 async function loadCommandes() {
     try {
-        const response = await fetch('http://localhost:3000/commandes'); // API qui retourne les Livreurs
+        const response = await fetch('http://localhost:3000/commandes'); // API qui retourne les commandes
         const commandes = await response.json();
 
         // Cibler le corps du tableau
         const tableBody = document.getElementById('ordersTableBody');
         tableBody.innerHTML = ''; // Vider le tableau avant de le remplir
 
-        // Remplir le tableau avec les clients
-        commandes.forEach(commande => {
-            const row = document.createElement('tr');
+        for (const commande of commandes) {
+            const clientResponse = await fetch(`http://localhost:3000/clients/${commande.client_id}`);
+            const livreurResponse = await fetch(`http://localhost:3000/livreurs/${commande.livreur_id}`);
+
+            if (!clientResponse.ok || !livreurResponse.ok) {
+                throw new Error('Erreur lors de la récupération des noms des clients ou des livreurs');
+            }
+
+            const client = await clientResponse.json();
+            const livreur = await livreurResponse.json();
+
             const total = commande.produits.reduce((acc, produit) => acc + (produit.prix * produit.quantite), 0);
+
+            const row = document.createElement('tr');
             row.innerHTML = `
-                <td class="px-4 py-2 text-center border-b">${commande.id}</td>
-                <td class="px-4 py-2 text-center border-b">${commande.client_id}</td>
-                <td class="px-4 py-2 text-center border-b">${commande.livreur_id}</td>
-                <td class="px-4 py-2 text-center border-b">${commande.produits[0].nom}</td>
-                <td class="px-4 py-2 text-center border-b">${commande.produits[0].quantite}</td>
-                <td class="px-4 py-2 text-center border-b">${commande.produits[0].prix}</td>
+                <td class="px-4 py-2 text-center border-b">${client.nom}</td>
+                <td class="px-4 py-2 text-center border-b">${livreur.nom}</td>
+                <td class="px-4 py-2 text-center border-b">${commande.produits.map(p => p.nom).join(', ')}</td>
+                <td class="px-4 py-2 text-center border-b">${commande.produits.map(p => p.quantite).join(', ')}</td>
+                <td class="px-4 py-2 text-center border-b">${commande.produits.map(p => p.prix).join(', ')}</td>
                 <td class="px-4 py-2 text-center border-b">${total}</td>
                 <td class="px-4 py-2 text-center border-b">${commande.statut}</td>
                 <td class="px-4 py-2 text-center border-b">
@@ -27,44 +36,42 @@ async function loadCommandes() {
                 </td>
             `;
             tableBody.appendChild(row);
-        });
+        }
     } catch (error) {
-        console.error('Erreur lors du chargement des livreurs:', error);
+        console.error('Erreur lors du chargement des commandes:', error);
+        alert('Erreur lors du chargement des commandes.');
     }
 }
 
-// Fonction pour modifier un client
+// Fonction pour modifier une commande
 function editCommande(id) {
     window.location.href = `modification.html?id=${id}`;
 }
 
-
-
-
-// Fonction pour supprimer un client
+// Fonction pour supprimer une commande
 async function deleteCommande(id) {
     const confirmation = confirm('Êtes-vous sûr de vouloir supprimer cette commande ?');
     if (confirmation) {
         try {
-            console.log(`Tentative de suppression du commande avec ID: ${id}`);
+            console.log(`Tentative de suppression de la commande avec ID: ${id}`);
             const response = await fetch(`http://localhost:3000/commandes/${id}`, {
                 method: 'DELETE'
             });
             if (response.ok) {
-                alert('commande supprimé avec succès.');
-                console.log('commande supprimé avec succès.');
-                loadCommandes(); // Recharger les livreurs après suppression
+                alert('Commande supprimée avec succès.');
+                console.log('Commande supprimée avec succès.');
+                loadCommandes(); // Recharger les commandes après suppression
             } else {
                 const errorText = await response.text();
-                alert('Erreur lors de la suppression du livreur.');
-                console.error('Erreur lors de la suppression du commandes:', errorText);
+                alert('Erreur lors de la suppression de la commande.');
+                console.error('Erreur lors de la suppression de la commande:', errorText);
             }
         } catch (error) {
-            console.error('Erreur lors de la suppression du commandes:', error);
-            alert('Erreur lors de la suppression du commandes.');
+            console.error('Erreur lors de la suppression de la commande:', error);
+            alert('Erreur lors de la suppression de la commande.');
         }
     }
 }
 
-// Charger les clients au démarrage
-loadCommandes();
+// Charger les commandes au démarrage
+document.addEventListener('DOMContentLoaded', loadCommandes);

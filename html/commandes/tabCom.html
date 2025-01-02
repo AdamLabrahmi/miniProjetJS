@@ -4,30 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des Commandes</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.3/tailwind.min.css">
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto mt-10">
-        <h1 class="text-2xl font-bold mb-5">Liste des Commandes</h1>
+<body>
+    <div class="container mx-auto p-8">
+        <h1 class="text-2xl font-bold mb-4">Liste des Commandes</h1>
         <table class="min-w-full bg-white">
             <thead>
                 <tr>
-                    <th class="py-2 px-4 border-b">Numéro de Commande</th>
-                    <th class="py-2 px-4 border-b">Client</th>
-                    <th class="py-2 px-4 border-b">Livreur</th>
-                    <th class="py-2 px-4 border-b">Nom Produit</th>
-                    <th class="py-2 px-4 border-b">Quantite</th>
-                    <th class="py-2 px-4 border-b">Prix</th>
-                    <th class="py-2 px-4 border-b">Total</th>
-                    <th class="py-2 px-4 border-b">Statut</th>
-                    <th class="py-2 px-4 border-b">Actions</th>
+                    <th class="px-4 py-2 border-b">Nom Client</th>
+                    <th class="px-4 py-2 border-b">Nom Livreur</th>
+                    <th class="px-4 py-2 border-b">Produits</th>
+                    <th class="px-4 py-2 border-b">Quantité</th>
+                    <th class="px-4 py-2 border-b">Prix</th>
+                    <th class="px-4 py-2 border-b">Total</th>
+                    <th class="px-4 py-2 border-b">Statut</th>
+                    <th class="px-4 py-2 border-b">Actions</th>
                 </tr>
             </thead>
             <tbody id="ordersTableBody">
+                <!-- Les lignes de commandes seront ajoutées dynamiquement ici -->
             </tbody>
         </table>
     </div>
-
     <script src="../../js/commandesjs/commandes.js"></script>
 </body>
 </html>
