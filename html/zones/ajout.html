@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter Zone</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-8">
+        <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg">
+            <div class="md:flex">
+                <div class="w-full p-4">
+                    <div class="mb-4">
+                        <h2 class="text-2xl font-bold text-gray-700">Ajouter Zone</h2>
+                    </div>
+                    <form id="ajout-zone-form">
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="zone-nom">
+                                Nom de la Zone
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="zone-nom" type="text" placeholder="Nom de la Zone">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="ville-zone">
+                                Ville de la Zone
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="ville-zone" type="text" placeholder="Ville de la Zone">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="code-zone">
+                                Code de la Zone
+                            </label>
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="code-zone" type="text" placeholder="Code de la Zone">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <button id="ajouter-zone-btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                                Ajouter
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../js/zonesjs/addzone.js"></script>
+</body>
+</html>

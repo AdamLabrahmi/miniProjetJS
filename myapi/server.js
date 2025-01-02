@@ -79,6 +79,9 @@ app.get('/produits', (req, res) => res.json(produits));
 app.get('/commandes', (req, res) => res.json(commandes));
 app.get('/zones', (req, res) => res.json(zones));
 
+
+//Livreurs
+
 app.post('/livreurs', (req, res) => {
     const livreur = req.body;
     livreur.id = livreurs.length + 1;
@@ -86,7 +89,30 @@ app.post('/livreurs', (req, res) => {
     res.status(201).json(livreur);
 });
 
+app.post('/livreurs', (req, res) => {
+    const nouveauLivreur = req.body;  // Livreur envoyé dans la requête
+    nouveauLivreur.id = livreurs.length + 1; // Générez un nouvel ID
+    livreurs.push(nouveauLivreur); // Ajoutez le Livreur à la liste
+    res.status(201).json(nouveauLivreur); // Réponse avec le client ajouté
+});
+
+
+app.delete('/livreurs/:id', (req, res) => {
+    const livreurId = parseInt(req.params.id);
+    const livreurIndex = livreurs.findIndex(livreur => livreur.id === livreurId);
+    if (livreurIndex !== -1) {
+        livreurs.splice(livreurIndex, 1);
+        res.status(200).json({ message: 'Livreur supprimé avec succès' });
+    } else {
+        res.status(404).json({ message: 'Livreur non trouvé' });
+    }
+});
+
+
+
 //CLIENTS
+
+
 // app.post('/clients', (req, res) => {
 //     const client = req.body;
 //     client.id = clients.length + 1;
@@ -104,12 +130,46 @@ app.get('/clients', (req, res) => {
     res.json(clients); // Send clients data as JSON
 });
 
+app.delete('/clients/:id', (req, res) => {
+    const clientId = parseInt(req.params.id);
+    const clientIndex = clients.findIndex(client => client.id === clientId);
+    if (clientIndex !== -1) {
+        clients.splice(clientIndex, 1);
+        res.status(200).json({ message: 'Client supprimé avec succès' });
+    } else {
+        res.status(404).json({ message: 'Client non trouvé' });
+    }
+});
 
+// Produits
 app.post('/produits', (req, res) => {
     const produit = req.body;
     produit.id = produits.length + 1;
     produits.push(produit);
     res.status(201).json(produit);
+});
+
+app.post('/produits', (req, res) => {
+    const nouveauProduit = req.body;  // Produit envoyé dans la requête
+    nouveauProduit.id = produits.length + 1; // Générez un nouvel ID
+    produits.push(nouveauProduit); // Ajoutez le produit à la liste
+    res.status(201).json(nouveauProduit); // Réponse avec le produit ajouté
+});
+
+app.delete('/produits/:id', (req, res) => {
+    const produitId = parseInt(req.params.id);
+    const produitIndex = produits.findIndex(produit => produit.id === produitId);
+    if (produitIndex !== -1) {
+        produits.splice(produitIndex, 1);
+        res.status(200).json({ message: 'Produit supprimé avec succès' });
+    } else {
+        res.status(404).json({ message: 'Produit non trouvé' });
+    }
+});
+
+// Commandes
+app.get('/commandes', (req, res) => {
+    res.json(commandes);
 });
 
 app.post('/commandes', (req, res) => {
@@ -119,11 +179,43 @@ app.post('/commandes', (req, res) => {
     res.status(201).json(commande);
 });
 
+
+
+app.delete('/commandes/:id', (req, res) => {
+    const commandeId = parseInt(req.params.id);
+    const commandeIndex = commandes.findIndex(commande => commande.id === commandeId);
+    if (commandeIndex !== -1) {
+        commandes.splice(commandeIndex, 1);
+        res.status(200).json({ message: 'Commande supprimée avec succès' });
+    } else {
+        res.status(404).json({ message: 'Commande non trouvée' });
+    }
+});
+
+// ZONES
 app.post('/zones', (req, res) => {
     const zone = req.body;
     zone.id = zones.length + 1;
     zones.push(zone);
     res.status(201).json(zone);
+});
+
+app.post('/zones', (req, res) => {
+    const nouvelleZone = req.body;  // Zone envoyée dans la requête
+    nouvelleZone.id = zones.length + 1; // Générez un nouvel ID
+    zones.push(nouvelleZone); // Ajoutez la zone à la liste
+    res.status(201).json(nouvelleZone); // Réponse avec la zone ajoutée
+});
+
+app.delete('/zones/:id', (req, res) => {
+    const zoneId = parseInt(req.params.id);
+    const zoneIndex = zones.findIndex(zone => zone.id === zoneId);
+    if (zoneIndex !== -1) {
+        zones.splice(zoneIndex, 1);
+        res.status(200).json({ message: 'Zone supprimée avec succès' });
+    } else {
+        res.status(404).json({ message: 'Zone non trouvée' });
+    }
 });
 
 app.listen(3000, () => console.log('API running on http://localhost:3000'));

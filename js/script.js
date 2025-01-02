@@ -1,7 +1,7 @@
-if (localStorage.getItem('authenticated') !== 'true') {
-    localStorage.setItem('redirectAfterLogin', window.location.href);
-    window.location.href = 'index.html';
-}
+// if (localStorage.getItem('authenticated') !== 'true') {
+//     localStorage.setItem('redirectAfterLogin', window.location.href);
+//     window.location.href = 'index.html';
+// }
 
 // sidebar
 function toggleDropdown(id) {

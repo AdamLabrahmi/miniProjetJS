@@ -37,18 +37,25 @@ function editClient(id) {
 }
 
 // Fonction pour supprimer un client
+// ...existing code...
+
+// Fonction pour supprimer un client
 async function deleteClient(id) {
     const confirmation = confirm('Êtes-vous sûr de vouloir supprimer ce client ?');
     if (confirmation) {
         try {
+            console.log(`Tentative de suppression du client avec ID: ${id}`);
             const response = await fetch(`http://localhost:3000/clients/${id}`, {
                 method: 'DELETE'
             });
             if (response.ok) {
                 alert('Client supprimé avec succès.');
+                console.log('Client supprimé avec succès.');
                 loadClients(); // Recharger les clients après suppression
             } else {
+                const errorText = await response.text();
                 alert('Erreur lors de la suppression du client.');
+                console.error('Erreur lors de la suppression du client:', errorText);
             }
         } catch (error) {
             console.error('Erreur lors de la suppression du client:', error);
@@ -56,6 +63,8 @@ async function deleteClient(id) {
         }
     }
 }
+
+// ...existing code...
 
 // Charger les clients au démarrage
 loadClients();
