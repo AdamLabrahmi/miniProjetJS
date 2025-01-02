@@ -12,12 +12,12 @@ async function loadClients() {
         clients.forEach(client => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td class="px-4 py-2 border-b">${client.nom}</td>
-                <td class="px-4 py-2 border-b">${client.prenom}</td>
-                <td class="px-4 py-2 border-b">${client.telephone}</td>
-                <td class="px-4 py-2 border-b">${client.email}</td>
-                <td class="px-4 py-2 border-b">${client.adresse}</td>
-                <td class="px-4 py-2 border-b">
+                <td class="px-4 py-2 text-center border-b">${client.nom}</td>
+                <td class="px-4 py-2 text-center border-b">${client.prenom}</td>
+                <td class="px-4 py-2 text-center border-b">${client.telephone}</td>
+                <td class="px-4 py-2 text-center border-b">${client.email}</td>
+                <td class="px-4 py-2 text-center border-b">${client.adresse}</td>
+                <td class="px-4 py-2 text-center border-b">
                     <button class="bg-yellow-500 text-white py-1 px-3 rounded mr-2" onclick="editClient(${client.id})">Modifier</button>
                     <button class="bg-red-500 text-white py-1 px-3 rounded" onclick="deleteClient(${client.id})">Supprimer</button>
                 </td>
@@ -29,12 +29,11 @@ async function loadClients() {
     }
 }
 
-// Fonction pour modifier un client
+// Fonction pour rediriger vers la page de modification
 function editClient(id) {
-    alert('Modification du client avec ID: ' + id);
-    // Logique de modification à implémenter
-    // Exemple : rediriger vers une page de modification ou afficher un formulaire
+    window.location.href = `modification.html?id=${id}`;
 }
+
 
 // Fonction pour supprimer un client
 // ...existing code...

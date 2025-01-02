@@ -34,40 +34,37 @@ async function loadCommandes() {
 }
 
 // Fonction pour modifier un client
-function editClient(id) {
-    alert('Modification du client avec ID: ' + id);
-    // Logique de modification à implémenter
-    // Exemple : rediriger vers une page de modification ou afficher un formulaire
+function editCommande(id) {
+    window.location.href = `modification.html?id=${id}`;
 }
 
-// Fonction pour supprimer un client
-// ...existing code...
 
 
+
 // Fonction pour supprimer un client
-// async function deletelivreur(id) {
-//     const confirmation = confirm('Êtes-vous sûr de vouloir supprimer ce livreur ?');
-//     if (confirmation) {
-//         try {
-//             console.log(`Tentative de suppression du Livreur avec ID: ${id}`);
-//             const response = await fetch(`http://localhost:3000/livreurs/${id}`, {
-//                 method: 'DELETE'
-//             });
-//             if (response.ok) {
-//                 alert('Livreur supprimé avec succès.');
-//                 console.log('Livreur supprimé avec succès.');
-//                 loadLivreurs(); // Recharger les livreurs après suppression
-//             } else {
-//                 const errorText = await response.text();
-//                 alert('Erreur lors de la suppression du livreur.');
-//                 console.error('Erreur lors de la suppression du livreur:', errorText);
-//             }
-//         } catch (error) {
-//             console.error('Erreur lors de la suppression du livreur:', error);
-//             alert('Erreur lors de la suppression du livreur.');
-//         }
-//     }
-// }
+async function deleteCommande(id) {
+    const confirmation = confirm('Êtes-vous sûr de vouloir supprimer cette commande ?');
+    if (confirmation) {
+        try {
+            console.log(`Tentative de suppression du commande avec ID: ${id}`);
+            const response = await fetch(`http://localhost:3000/commandes/${id}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                alert('commande supprimé avec succès.');
+                console.log('commande supprimé avec succès.');
+                loadCommandes(); // Recharger les livreurs après suppression
+            } else {
+                const errorText = await response.text();
+                alert('Erreur lors de la suppression du livreur.');
+                console.error('Erreur lors de la suppression du commandes:', errorText);
+            }
+        } catch (error) {
+            console.error('Erreur lors de la suppression du commandes:', error);
+            alert('Erreur lors de la suppression du commandes.');
+        }
+    }
+}
 
 // Charger les clients au démarrage
 loadCommandes();

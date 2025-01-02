@@ -1,4 +1,4 @@
-// ListerLivreurs
+// ListerProduits
 async function loadProduits() {
     try {
         const response = await fetch('http://localhost:3000/produits'); // API qui retourne les Livreurs
@@ -18,7 +18,7 @@ async function loadProduits() {
                 <td class="px-4 py-2 text-center border-b">${produit.stock}</td>
                 <td class="px-4 py-2 text-center border-b">${produit.categorie}</td>
                 <td class="px-4 py-2 text-center border-b">
-                    <button class="bg-yellow-500 text-white py-1 px-3 rounded mr-2" onclick="editproduit(${produit.id})">Modifier</button>
+                    <button class="bg-yellow-500 text-white py-1 px-3 rounded mr-2" onclick="editProduit(${produit.id})">Modifier</button>
                     <button class="bg-red-500 text-white py-1 px-3 rounded" onclick="deleteProduit(${produit.id})">Supprimer</button>
                 </td>
             `;
@@ -30,8 +30,8 @@ async function loadProduits() {
 }
 
 // Fonction pour modifier un client
-function editClient(id) {
-    alert('Modification du client avec ID: ' + id);
+function editProduit(id) {
+    window.location.href = `modification.html?id=${id}`;
     // Logique de modification à implémenter
     // Exemple : rediriger vers une page de modification ou afficher un formulaire
 }

@@ -30,12 +30,13 @@ async function loadLivreurs() {
 }
 
 // Fonction pour modifier un client
-function editClient(id) {
-    alert('Modification du client avec ID: ' + id);
-    // Logique de modification à implémenter
+function editlivreur(id) {
+    // alert('Modification du client avec ID: ' + id);
+    window.location.href = `modification.html?id=${id}`;
     // Exemple : rediriger vers une page de modification ou afficher un formulaire
 }
-
+function editClient(id) {
+}
 // Fonction pour supprimer un client
 // ...existing code...
 

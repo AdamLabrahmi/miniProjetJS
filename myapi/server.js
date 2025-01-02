@@ -47,16 +47,16 @@ let produits = [
 ];
 
 let commandes = [
-    { id: 101, client_id: 1, livreur_id: 1, produits: [{ nom: "Téléphone", quantite: 1, prix: 500 }], statut: "En cours", date_creation: "2024-12-20" },
-    { id: 102, client_id: 2, livreur_id: 2, produits: [{ nom: "Ordinateur", quantite: 1, prix: 1000 }], statut: "Livrée", date_creation: "2024-12-21" },
-    { id: 103, client_id: 3, livreur_id: 3, produits: [{ nom: "Tablette", quantite: 2, prix: 300 }], statut: "En cours", date_creation: "2024-12-22" },
-    { id: 104, client_id: 4, livreur_id: 4, produits: [{ nom: "Casque", quantite: 1, prix: 100 }], statut: "Annulée", date_creation: "2024-12-23" },
-    { id: 105, client_id: 5, livreur_id: 5, produits: [{ nom: "Clavier", quantite: 1, prix: 50 }], statut: "En cours", date_creation: "2024-12-24" },
-    { id: 106, client_id: 6, livreur_id: 6, produits: [{ nom: "Souris", quantite: 1, prix: 30 }], statut: "Livrée", date_creation: "2024-12-25" },
-    { id: 107, client_id: 7, livreur_id: 7, produits: [{ nom: "Imprimante", quantite: 1, prix: 200 }], statut: "En cours", date_creation: "2024-12-26" },
-    { id: 108, client_id: 8, livreur_id: 8, produits: [{ nom: "Scanner", quantite: 1, prix: 150 }], statut: "Annulée", date_creation: "2024-12-27" },
-    { id: 109, client_id: 9, livreur_id: 9, produits: [{ nom: "Télévision", quantite: 1, prix: 800 }], statut: "En cours", date_creation: "2024-12-28" },
-    { id: 110, client_id: 10, livreur_id: 10, produits: [{ nom: "Appareil photo", quantite: 1, prix: 600 }], statut: "Livrée", date_creation: "2024-12-29" }
+    { id: 1, client_id: 1, livreur_id: 1, produits: [{ nom: "Téléphone", quantite: 1, prix: 500 }], statut: "En cours", date_creation: "2024-12-20" },
+    { id: 2, client_id: 2, livreur_id: 2, produits: [{ nom: "Ordinateur", quantite: 1, prix: 1000 }], statut: "Livrée", date_creation: "2024-12-21" },
+    { id: 3, client_id: 3, livreur_id: 3, produits: [{ nom: "Tablette", quantite: 2, prix: 300 }], statut: "En cours", date_creation: "2024-12-22" },
+    { id: 4, client_id: 4, livreur_id: 4, produits: [{ nom: "Casque", quantite: 1, prix: 100 }], statut: "Annulée", date_creation: "2024-12-23" },
+    { id: 5, client_id: 5, livreur_id: 5, produits: [{ nom: "Clavier", quantite: 1, prix: 50 }], statut: "En cours", date_creation: "2024-12-24" },
+    { id: 6, client_id: 6, livreur_id: 6, produits: [{ nom: "Souris", quantite: 1, prix: 30 }], statut: "Livrée", date_creation: "2024-12-25" },
+    { id: 7, client_id: 7, livreur_id: 7, produits: [{ nom: "Imprimante", quantite: 1, prix: 200 }], statut: "En cours", date_creation: "2024-12-26" },
+    { id: 8, client_id: 8, livreur_id: 8, produits: [{ nom: "Scanner", quantite: 1, prix: 150 }], statut: "Annulée", date_creation: "2024-12-27" },
+    { id: 9, client_id: 9, livreur_id: 9, produits: [{ nom: "Télévision", quantite: 1, prix: 800 }], statut: "En cours", date_creation: "2024-12-28" },
+    { id: 10, client_id: 10, livreur_id: 10, produits: [{ nom: "Appareil photo", quantite: 1, prix: 600 }], statut: "Livrée", date_creation: "2024-12-29" }
 ];
 
 let zones = [
@@ -81,6 +81,42 @@ app.get('/zones', (req, res) => res.json(zones));
 
 
 //Livreurs
+// ===========
+app.get('/livreurs/:id', (req, res) => {
+    const livreurId = parseInt(req.params.id);
+    const livreur = livreurs.find(l => l.id === livreurId);
+    if (livreur) {
+        res.json(livreur);
+    } else {
+        res.status(404).json({ message: 'Livreur non trouvé' });
+    }
+});
+
+app.get('/zones/:id', (req, res) => {
+    const zoneId = parseInt(req.params.id);
+    const zone = zones.find(z => z.id === zoneId);
+    if (zone) {
+        res.json(zone);
+    } else {
+        res.status(404).json({ message: 'Zone non trouvée' });
+    }
+});
+
+app.get('/zones', (req, res) => {
+    res.json(zones);
+});
+
+app.get('/zones/id', (req, res) => {
+    const zoneNom = req.query.nom;
+    const zone = zones.find(z => z.nom.toLowerCase() === zoneNom.toLowerCase());
+    if (zone) {
+        res.json({ id: zone.id });
+    } else {
+        res.status(404).json({ message: 'Zone non trouvée' });
+    }
+});
+
+// =================
 
 app.post('/livreurs', (req, res) => {
     const livreur = req.body;
@@ -126,9 +162,37 @@ app.post('/clients', (req, res) => {
     clients.push(nouveauClient); // Ajoutez le client à la liste
     res.status(201).json(nouveauClient); // Réponse avec le client ajouté
 });
-app.get('/clients', (req, res) => {
-    res.json(clients); // Send clients data as JSON
+// app.get('/clients', (req, res) => {
+//     res.json(clients); // Send clients data as JSON
+// });
+
+app.get('/clients/:id', (req, res) => {
+    const clientId = parseInt(req.params.id);
+    const client = clients.find(c => c.id === clientId);
+    if (client) {
+        res.json(client);
+    } else {
+        res.status(404).json({ message: 'Client non trouvé' });
+    }
 });
+
+app.put('/clients/:id', (req, res) => {
+    const clientId = parseInt(req.params.id);
+    const clientModifie = req.body;
+    const client = clients.find(client => client.id === clientId);
+    if (client) {
+        client.nom = clientModifie.nom;
+        client.prenom = clientModifie.prenom;
+        client.telephone = clientModifie.telephone;
+        client.email = clientModifie.email;
+        client.adresse = clientModifie.adresse;
+        res.status(200).json(client);
+    }
+    else {
+        res.status(404).json({ message: 'Client non trouvé' });
+    }
+});
+
 
 app.delete('/clients/:id', (req, res) => {
     const clientId = parseInt(req.params.id);
@@ -149,6 +213,31 @@ app.post('/produits', (req, res) => {
     res.status(201).json(produit);
 });
 
+app.get('/produits/:id', (req, res) => {
+    const produitId = parseInt(req.params.id);
+    const produit = produits.find(p => p.id === produitId);
+    if (produit) {
+        res.json(produit);
+    } else {
+        res.status(404).json({ message: 'Produit non trouvé' });
+    }
+});
+
+app.put('/produits/:id', (req, res) => {
+    const produitId = parseInt(req.params.id);
+    const produitModifie = req.body;
+    const produit = produits.find(produit => produit.id === produitId);
+    if (produit) {
+        produit.nom = produitModifie.nom;
+        produit.description = produitModifie.description;
+        produit.prix = produitModifie.prix;
+        produit.stock = produitModifie.stock;
+        produit.categorie = produitModifie.categorie;
+        res.status(200).json(produit);
+    } else {
+        res.status(404).json({ message: 'Produit non trouvé' });
+    }
+});
 app.post('/produits', (req, res) => {
     const nouveauProduit = req.body;  // Produit envoyé dans la requête
     nouveauProduit.id = produits.length + 1; // Générez un nouvel ID
@@ -168,8 +257,62 @@ app.delete('/produits/:id', (req, res) => {
 });
 
 // Commandes
+// app.get('/commandes', (req, res) => {
+//     res.json(commandes);
+// });
+
+// app.post('/commandes', (req, res) => {
+//     const commande = req.body;
+//     commande.id = commandes.length + 1;
+//     commandes.push(commande);
+//     res.status(201).json(commande);
+// });
+
+// Commandes
 app.get('/commandes', (req, res) => {
     res.json(commandes);
+});
+
+app.get('/commandes/:id', (req, res) => {
+    const commandeId = parseInt(req.params.id);
+    const commande = commandes.find(c => c.id === commandeId);
+    if (commande) {
+        res.json(commande);
+    } else {
+        res.status(404).json({ message: 'Commande non trouvée' });
+    }
+});
+
+app.put('/commandes/:id', (req, res) => {
+    const commandeId = parseInt(req.params.id);
+    const commandeModifiee = req.body;
+    const commande = commandes.find(c => c.id === commandeId);
+    if (commande) {
+        commande.client_nom = commandeModifiee.client_nom;
+        commande.livreur_nom = commandeModifiee.livreur_nom;
+        commande.produits = commandeModifiee.produits;
+        commande.statut = commandeModifiee.statut;
+        commande.date_creation = commandeModifiee.date_creation;
+        res.status(200).json(commande);
+    } else {
+        res.status(404).json({ message: 'Commande non trouvée' });
+    }
+});
+
+app.put('/commandes/:id', (req, res) => {
+    const commandeId = parseInt(req.params.id);
+    const commandeModifiee = req.body;
+    const commande = commandes.find(c => c.id === commandeId);
+    if (commande) {
+        commande.client_id = commandeModifiee.client_id;
+        commande.livreur_id = commandeModifiee.livreur_id;
+        commande.produits = commandeModifiee.produits;
+        commande.statut = commandeModifiee.statut;
+        commande.date_creation = commandeModifiee.date_creation;
+        res.status(200).json(commande);
+    } else {
+        res.status(404).json({ message: 'Commande non trouvée' });
+    }
 });
 
 app.post('/commandes', (req, res) => {
@@ -179,6 +322,16 @@ app.post('/commandes', (req, res) => {
     res.status(201).json(commande);
 });
 
+// app.delete('/commandes/:id', (req, res) => {
+//     const commandeId = parseInt(req.params.id);
+//     const commandeIndex = commandes.findIndex(commande => commande.id === commandeId);
+//     if (commandeIndex !== -1) {
+//         commandes.splice(commandeIndex, 1);
+//         res.status(200).json({ message: 'Commande supprimée avec succès' });
+//     } else {
+//         res.status(404).json({ message: 'Commande non trouvée' });
+//     }
+// });
 
 
 app.delete('/commandes/:id', (req, res) => {
@@ -215,6 +368,29 @@ app.delete('/zones/:id', (req, res) => {
         res.status(200).json({ message: 'Zone supprimée avec succès' });
     } else {
         res.status(404).json({ message: 'Zone non trouvée' });
+    }
+});
+
+
+// Zone par ID
+app.get('/zones/id', (req, res) => {
+    const zoneNom = req.query.nom;
+    const zone = zones.find(z => z.nom.toLowerCase() === zoneNom.toLowerCase());
+    if (zone) {
+        res.json({ id: zone.id });
+    } else {
+        res.status(404).json({ message: 'Zone non trouvée' });
+    }
+});
+
+// Prix des produits
+app.get('/produits/prix', (req, res) => {
+    const produitNom = req.query.nom;
+    const produit = produits.find(p => p.nom.toLowerCase() === produitNom.toLowerCase());
+    if (produit) {
+        res.json({ prix: produit.prix });
+    } else {
+        res.status(404).json({ message: 'Produit non trouvé' });
     }
 });
 
