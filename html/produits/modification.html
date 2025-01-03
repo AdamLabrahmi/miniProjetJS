@@ -19,7 +19,9 @@
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="produit-nom">
                                 Nom du Produit
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="produit-nom" type="text" placeholder="Nom du Produit">
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="produit-nom">
+                                <!-- Les options seront ajoutées dynamiquement ici -->
+                            </select>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="produit-description">
@@ -31,7 +33,7 @@
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="produit-prix">
                                 Prix
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="produit-prix" type="number" step="0.01" placeholder="Prix">
+                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="produit-prix" type="number" placeholder="Prix">
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="produit-stock">
@@ -41,9 +43,11 @@
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="produit-categorie">
-                                Catégorie
+                                Catégorie Produit
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="produit-categorie" type="text" placeholder="Catégorie">
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="produit-categorie">
+                                <!-- Les options seront ajoutées dynamiquement ici -->
+                            </select>
                         </div>
                         <div class="flex items-center justify-between">
                             <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" id="modifier-btn">

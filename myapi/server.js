@@ -394,4 +394,17 @@ app.get('/produits/prix', (req, res) => {
     }
 });
 
+app.get('/statistiques', (req, res) => {
+    const statistiques = {
+        utilisateurs: 100, // Exemple de données
+        livreurs: 50,
+        commandesLivrees: 200,
+        commandesEnCours: 30,
+        commandesAnnulees: 10,
+        nombreZones: 15,
+        nombreProduits: 120
+    };
+    res.json(statistiques);
+});
+
 app.listen(3000, () => console.log('API running on http://localhost:3000'));

@@ -24,6 +24,50 @@ function remplirChampsProduit(id) {
         });
 }
 
+// Fonction pour charger les noms des produits dans le menu déroulant
+function chargerNomsProduits() {
+    fetch('http://localhost:3000/produits')
+        .then(response => response.json())
+        .then(produits => {
+            const produitNomSelect = document.getElementById('produit-nom');
+            const produitCategorieSelect = document.getElementById('produit-categorie');
+            const categories = new Set();
+
+            produits.forEach(produit => {
+                const optionNom = document.createElement('option');
+                optionNom.value = produit.nom; // Utiliser le nom du produit comme valeur
+                optionNom.textContent = produit.nom;
+                produitNomSelect.appendChild(optionNom);
+
+                categories.add(produit.categorie);
+            });
+
+            categories.forEach(categorie => {
+                const optionCategorie = document.createElement('option');
+                optionCategorie.value = categorie; // Utiliser la catégorie du produit comme valeur
+                optionCategorie.textContent = categorie;
+                produitCategorieSelect.appendChild(optionCategorie);
+            });
+
+            // Sélectionner le produit de la commande
+            if (produitId) {
+                fetch(`http://localhost:3000/produits/${produitId}`)
+                    .then(response => response.json())
+                    .then(produit => {
+                        produitNomSelect.value = produit.nom;
+                        produitCategorieSelect.value = produit.categorie;
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors de la sélection du produit:', error);
+                    });
+            }
+        })
+        .catch(error => {
+            console.error('Erreur lors du chargement des noms des produits:', error);
+            alert('Erreur lors du chargement des noms des produits.');
+        });
+}
+
 // Fonction pour modifier un produit
 function modifProduit() {
     // Récupérer les valeurs des champs de saisie
@@ -53,7 +97,7 @@ function modifProduit() {
         .then(response => {
             if (response.ok) {
                 alert('Produit modifié avec succès.');
-                window.location.href = 'tabP.html'; // Rediriger vers tabP.html après modification
+                window.location.href = '../../html/produits/tabP.html'; // Rediriger vers tabP.html après modification
             } else {
                 alert('Erreur lors de la modification du produit.');
             }
@@ -76,6 +120,9 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         alert('ID du produit manquant dans l\'URL.');
     }
+
+    // Charger les noms des produits et les catégories dans les menus déroulants
+    chargerNomsProduits();
 
     // Ajouter un écouteur d'événement pour le bouton de modification
     document.getElementById('modifier-btn').addEventListener('click', modifProduit);

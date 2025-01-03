@@ -1,3 +1,53 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // Charger les noms des clients
+    fetch('http://localhost:3000/clients')
+        .then(response => response.json())
+        .then(clients => {
+            const clientSelect = document.getElementById('client-nom');
+            clients.forEach(client => {
+                const option = document.createElement('option');
+                option.value = client.nom;
+                option.textContent = client.nom;
+                clientSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors du chargement des clients:', error);
+        });
+
+    // Charger les noms des livreurs
+    fetch('http://localhost:3000/livreurs')
+        .then(response => response.json())
+        .then(livreurs => {
+            const livreurSelect = document.getElementById('livreur-nom');
+            livreurs.forEach(livreur => {
+                const option = document.createElement('option');
+                option.value = livreur.nom;
+                option.textContent = livreur.nom;
+                livreurSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors du chargement des livreurs:', error);
+        });
+
+    // Charger les noms des produits
+    fetch('http://localhost:3000/produits')
+        .then(response => response.json())
+        .then(produits => {
+            const produitSelect = document.getElementById('produit-nom');
+            produits.forEach(produit => {
+                const option = document.createElement('option');
+                option.value = produit.nom;
+                option.textContent = produit.nom;
+                produitSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Erreur lors du chargement des produits:', error);
+        });
+});
+
 document.getElementById('ajouter-commande-btn').addEventListener('click', function() {
     console.log('Bouton cliqué'); // Ajoutez cette ligne pour vérifier
 
@@ -25,7 +75,7 @@ document.getElementById('ajouter-commande-btn').addEventListener('click', functi
                     const livreurId = livreurData[0].id;
 
                     // Fetch product price
-                    return fetch(`http://localhost:3000/produits/prix?nom=${encodeURIComponent(produitNom)}`)
+                    return fetch(`http://localhost:3000/produits?nom=${encodeURIComponent(produitNom)}`)
                         .then(response => {
                             if (!response.ok) {
                                 throw new Error('Produit non trouvé');
@@ -33,7 +83,7 @@ document.getElementById('ajouter-commande-btn').addEventListener('click', functi
                             return response.json();
                         })
                         .then(produitData => {
-                            const prix = produitData.prix;
+                            const prix = produitData[0].prix;
 
                             // Create commande with client, livreur IDs and product price
                             const commande = {

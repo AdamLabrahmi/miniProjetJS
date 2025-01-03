@@ -13,44 +13,48 @@ function remplirChampsCommande(id) {
         .then(commande => {
             console.log('Données de la commande récupérées:', commande);
 
-            const clientNomInput = document.getElementById('commande-client-nom');
-            const livreurNomInput = document.getElementById('commande-livreur-nom');
+            const clientNomSelect = document.getElementById('commande-client-nom');
+            const livreurNomSelect = document.getElementById('commande-livreur-nom');
             const nomProduitSelect = document.getElementById('nom-produit');
+            const categorieProduitSelect = document.getElementById('categorie-produit');
             const prixProduitInput = document.getElementById('prix-produit');
             const quantiteProduitInput = document.getElementById('quantite-produit');
             const statutSelect = document.getElementById('commande-statut');
             const dateCreationInput = document.getElementById('commande-date-creation');
 
-            if (clientNomInput && livreurNomInput && nomProduitSelect && prixProduitInput && quantiteProduitInput && statutSelect && dateCreationInput) {
-                // Récupérer le nom du client et du livreur
-                fetch(`http://localhost:3000/clients/${commande.client_id}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Erreur lors de la récupération du nom du client');
-                        }
-                        return response.json();
-                    })
-                    .then(client => {
-                        clientNomInput.value = client.nom;
+            if (clientNomSelect && livreurNomSelect && nomProduitSelect && categorieProduitSelect && prixProduitInput && quantiteProduitInput && statutSelect && dateCreationInput) {
+                // Charger les noms des clients dans le menu déroulant
+                fetch('http://localhost:3000/clients')
+                    .then(response => response.json())
+                    .then(clients => {
+                        clients.forEach(client => {
+                            const option = document.createElement('option');
+                            option.value = client.id;
+                            option.textContent = client.nom;
+                            clientNomSelect.appendChild(option);
+                        });
+                        clientNomSelect.value = commande.client_id;
                     })
                     .catch(error => {
-                        console.error('Erreur lors de la récupération du nom du client:', error);
-                        alert('Erreur lors de la récupération du nom du client.');
+                        console.error('Erreur lors de la récupération des noms des clients:', error);
+                        alert('Erreur lors de la récupération des noms des clients.');
                     });
 
-                fetch(`http://localhost:3000/livreurs/${commande.livreur_id}`)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('Erreur lors de la récupération du nom du livreur');
-                        }
-                        return response.json();
-                    })
-                    .then(livreur => {
-                        livreurNomInput.value = livreur.nom;
+                // Charger les noms des livreurs dans le menu déroulant
+                fetch('http://localhost:3000/livreurs')
+                    .then(response => response.json())
+                    .then(livreurs => {
+                        livreurs.forEach(livreur => {
+                            const option = document.createElement('option');
+                            option.value = livreur.id;
+                            option.textContent = livreur.nom;
+                            livreurNomSelect.appendChild(option);
+                        });
+                        livreurNomSelect.value = commande.livreur_id;
                     })
                     .catch(error => {
-                        console.error('Erreur lors de la récupération du nom du livreur:', error);
-                        alert('Erreur lors de la récupération du nom du livreur.');
+                        console.error('Erreur lors de la récupération des noms des livreurs:', error);
+                        alert('Erreur lors de la récupération des noms des livreurs.');
                     });
 
                 // Charger les noms des produits dans le menu déroulant
@@ -82,6 +86,22 @@ function remplirChampsCommande(id) {
                         alert('Erreur lors de la récupération des noms des produits.');
                     });
 
+                // Charger les catégories des produits dans le menu déroulant
+                fetch('http://localhost:3000/categories')
+                    .then(response => response.json())
+                    .then(categories => {
+                        categories.forEach(categorie => {
+                            const option = document.createElement('option');
+                            option.value = categorie.id;
+                            option.textContent = categorie.nom;
+                            categorieProduitSelect.appendChild(option);
+                        });
+                    })
+                    .catch(error => {
+                        console.error('Erreur lors de la récupération des catégories des produits:', error);
+                        alert('Erreur lors de la récupération des catégories des produits.');
+                    });
+
                 statutSelect.value = commande.statut;
                 dateCreationInput.value = commande.date_creation;
             } else {
@@ -98,19 +118,20 @@ function remplirChampsCommande(id) {
 // Fonction pour modifier une commande
 function modifCommande() {
     // Récupérer les valeurs des champs de saisie
-    const clientNom = document.getElementById('commande-client-nom').value;
-    const livreurNom = document.getElementById('commande-livreur-nom').value;
+    const clientId = document.getElementById('commande-client-nom').value;
+    const livreurId = document.getElementById('commande-livreur-nom').value;
     const nomProduit = document.getElementById('nom-produit').value;
+    const categorieProduit = document.getElementById('categorie-produit').value;
     const prixProduit = document.getElementById('prix-produit').value;
     const quantiteProduit = document.getElementById('quantite-produit').value;
     const statut = document.getElementById('commande-statut').value;
     const dateCreation = document.getElementById('commande-date-creation').value;
 
-    if (clientNom && livreurNom && nomProduit && prixProduit && quantiteProduit && statut && dateCreation) {
+    if (clientId && livreurId && nomProduit && categorieProduit && prixProduit && quantiteProduit && statut && dateCreation) {
         const commande = {
-            client_nom: clientNom,
-            livreur_nom: livreurNom,
-            produits: [{ nom: nomProduit, prix: prixProduit, quantite: quantiteProduit }],
+            client_id: clientId,
+            livreur_id: livreurId,
+            produits: [{ nom: nomProduit, categorie: categorieProduit, prix: prixProduit, quantite: quantiteProduit }],
             statut: statut,
             date_creation: dateCreation
         };
