@@ -35,19 +35,24 @@
         <aside id="sidebar" class="bg-green-500  text-white w-full md:w-64 p-6 space-y-6 md:block hidden">
             <h2 class="text-xl font-semibold">Menu</h2>
             <ul>
-                <li><a href="dashboard.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-home"></i> <strong>Page D'accueil</strong></a></li>
                 <li><a href="ChoisieList.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-list"></i> <strong>Liste</strong></a></li>
                 <li class="relative">
                     <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-ajout')"><i class="fas fa-plus"></i> <strong>Ajout</strong></a>
                     <ul id="dropdown-ajout" class="hidden pl-4 space-y-2">
-                        <li><a href="/html/livreurs/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Livreur</a></li>
-                        <li><a href="/html/clientss/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Client</a></li>
-                        <li><a href="/html/produits/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Produit</a></li>
-                        <li><a href="/html/commandes/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Commande</a></li>
-                        <li><a href="/html/zones/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Zone</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Livreur</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Client</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Produit</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Commande</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Zone</a></li>
                     </ul>
                 </li>
-                
+                <li class="relative">
+                    <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-cherche')"><i class="fas fa-search"></i> <strong>Chercher</strong></a>
+                    <ul id="dropdown-cherche" class="hidden pl-4 space-y-2">
+                        <li><a href="Liste.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Tri</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Filtrer</a></li>
+                    </ul>
+                </li>
                 <li class="relative">
                     <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-consulter')"><i class="fas fa-eye"></i> <strong>Consulter</strong></a>
                     <ul id="dropdown-consulter" class="hidden pl-4 space-y-2">
@@ -65,15 +70,26 @@
         </aside>
 
         <main class="bg-white flex-1 p-8">
-            <canvas id="myChart"></canvas>
-            <div class="mt-4 flex justify-end">
-                <button id="download-png" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2">Télécharger PNG</button>
-                <button id="download-pdf" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Télécharger PDF</button>
+            <h2 class="text-2xl font-semibold mb-4">Consulter Client</h2>
+            <div class="mb-4">
+                <label for="nom" class="block text-gray-700">Nom:</label>
+                <input type="text" id="nom" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Entrez le nom">
             </div>
+            <div class="mb-4">
+                <label for="prenom" class="block text-gray-700">Prénom:</label>
+                <input type="text" id="prenom" class="w-full p-2 border border-gray-300 rounded-md" placeholder="Entrez le prénom">
+            </div>
+            <button onclick="consulterClient()" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Consulter</button>
+            <div id="resultat" class="mt-4"></div>
+
         </main>
     </div>
   
-            <script src="../js/graphe.js"></script>
+        <script src="../../js/clientsjs/consulter.js"></script>
+
+
+
+
 
 
 </body>

@@ -36,16 +36,16 @@ function remplirChampsLivreur(id) {
                     })
                     .catch(error => {
                         console.error('Erreur lors de la récupération du nom de la zone:', error);
-                        alert('Erreur lors de la récupération du nom de la zone.');
+                        showMessage('Erreur lors de la récupération du nom de la zone.', 'error');
                     });
             } else {
                 console.error('ID de la zone non défini pour ce livreur.');
-                alert('ID de la zone non défini pour ce livreur.');
+                showMessage('ID de la zone non défini pour ce livreur.', 'error');
             }
         })
         .catch(error => {
             console.error('Erreur lors de la récupération des données du livreur:', error);
-            alert('Erreur lors de la récupération des données du livreur.');
+            showMessage('Erreur lors de la récupération des données du livreur.', 'error');
         });
 }
 
@@ -69,7 +69,7 @@ function chargerNomsZones() {
         })
         .catch(error => {
             console.error('Erreur lors de la récupération des noms des zones:', error);
-            alert('Erreur lors de la récupération des noms des zones.');
+            showMessage('Erreur lors de la récupération des noms des zones.', 'error');
         });
 }
 
@@ -114,23 +114,25 @@ function modifLivreur() {
                 })
                 .then(response => {
                     if (response.ok) {
-                        alert('Livreur modifié avec succès.');
-                        window.location.href = 'tabL.html'; // Rediriger vers tabL.html après modification
+                        showMessage('Livreur modifié avec succès.', 'success');
+                        setTimeout(() => {
+                            window.location.href = 'tabL.html'; // Rediriger vers tabL.html après modification
+                        }, 3000);
                     } else {
-                        alert('Erreur lors de la modification du livreur.');
+                        showMessage('Erreur lors de la modification du livreur.', 'error');
                     }
                 })
                 .catch(error => {
                     console.error('Erreur lors de la modification du livreur:', error);
-                    alert('Erreur lors de la modification du livreur.');
+                    showMessage('Erreur lors de la modification du livreur.', 'error');
                 });
             })
             .catch(error => {
                 console.error('Erreur lors de la récupération de l\'ID de la zone:', error);
-                alert('Erreur lors de la récupération de l\'ID de la zone.');
+                // showMessage('Erreur lors de la récupération de l\'ID de la zone.', 'error');
             });
     } else {
-        alert('Veuillez remplir tous les champs.');
+        showMessage('Veuillez remplir tous les champs.', 'error');
     }
 }
 
@@ -141,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (livreurId) {
         remplirChampsLivreur(livreurId);
     } else {
-        alert('ID du livreur manquant dans l\'URL.');
+        showMessage('ID du livreur manquant dans l\'URL.', 'error');
     }
 
     // Charger les noms des zones dans le menu déroulant
@@ -150,3 +152,51 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ajouter un écouteur d'événement pour le bouton de modification
     document.getElementById('modifier-btn').addEventListener('click', modifLivreur);
 });
+
+function showMessage(message, type) {
+    // Créer l'overlay pour le message
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    overlay.style.backdropFilter = 'blur(5px)';
+    overlay.style.zIndex = '999';
+
+    // Créer le message
+    const messageBox = document.createElement('div');
+    messageBox.textContent = message;
+    messageBox.style.position = 'fixed';
+    messageBox.style.top = '50%';
+    messageBox.style.left = '50%';
+    messageBox.style.transform = 'translate(-50%, -50%)';
+    messageBox.style.backgroundColor = 'white';
+    messageBox.style.color = 'black';
+    messageBox.style.padding = '40px';
+    messageBox.style.borderRadius = '10px';
+    messageBox.style.fontSize = '24px';
+    messageBox.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.2)';
+    messageBox.style.transition = 'opacity 0.5s ease';
+    messageBox.style.zIndex = '1000';
+
+    if (type === 'success') {
+        messageBox.style.backgroundColor = '#4CAF50'; // Couleur verte pour le succès
+        messageBox.style.color = 'white';
+    } 
+    else if (type === 'error') {
+        messageBox.style.backgroundColor = '#f44336'; // Couleur rouge pour l'erreur
+        messageBox.style.color = 'white';
+    }
+
+    overlay.appendChild(messageBox);
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+        messageBox.style.opacity = '0';
+        setTimeout(() => {
+            document.body.removeChild(overlay);
+        }, 500);
+    }, 3000);
+}

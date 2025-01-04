@@ -52,19 +52,68 @@ function modifClient() {
         })
         .then(response => {
             if (response.ok) {
-                alert('Client modifié avec succès.');
-                window.location.href = 'tabC.html'; // Rediriger vers tabC.html après modification
+                showMessage('Client modifié avec succès.', 'success');
+                setTimeout(() => {
+                    window.location.href = 'tabC.html'; // Rediriger vers tabC.html après modification
+                }, 3000);
             } else {
-                alert('Erreur lors de la modification du client.');
+                showMessage('Erreur lors de la modification du client.', 'error');
             }
         })
         .catch(error => {
             console.error('Erreur lors de la modification du client:', error);
-            alert('Erreur lors de la modification du client.');
+            showMessage('Erreur lors de la modification du client.', 'error');
         });
     } else {
-        alert('Veuillez remplir tous les champs.');
+        showMessage('Veuillez remplir tous les champs.', 'error');
     }
+}
+
+function showMessage(message, type) {
+    // Créer l'overlay pour le message
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    overlay.style.backdropFilter = 'blur(5px)';
+    overlay.style.zIndex = '999';
+
+    // Créer le message
+    const messageBox = document.createElement('div');
+    messageBox.textContent = message;
+    messageBox.style.position = 'fixed';
+    messageBox.style.top = '50%';
+    messageBox.style.left = '50%';
+    messageBox.style.transform = 'translate(-50%, -50%)';
+    messageBox.style.backgroundColor = 'white';
+    messageBox.style.color = 'black';
+    messageBox.style.padding = '40px';
+    messageBox.style.borderRadius = '10px';
+    messageBox.style.fontSize = '24px';
+    messageBox.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.2)';
+    messageBox.style.transition = 'opacity 0.5s ease';
+    messageBox.style.zIndex = '1000';
+
+    if (type === 'success') {
+        messageBox.style.backgroundColor = '#4CAF50'; // Couleur verte pour le succès
+        messageBox.style.color = 'white';
+    } else if (type === 'error') {
+        messageBox.style.backgroundColor = '#f44336'; // Couleur rouge pour l'erreur
+        messageBox.style.color = 'white';
+    }
+
+    overlay.appendChild(messageBox);
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+        messageBox.style.opacity = '0';
+        setTimeout(() => {
+            document.body.removeChild(overlay);
+        }, 500);
+    }, 3000);
 }
 
 // Appeler la fonction pour remplir les champs de saisie lorsque la page se charge

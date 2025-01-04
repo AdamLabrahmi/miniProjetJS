@@ -203,6 +203,11 @@ app.delete('/livreurs/:id', (req, res) => {
 //     clients.push(client);
 //     res.status(201).json(client);
 // });
+app.get('/clients', (req, res) => {
+    res.json(clients);
+});
+
+
 
 app.post('/clients', (req, res) => {
     const nouveauClient = req.body;  // Client envoyé dans la requête
@@ -442,6 +447,8 @@ app.get('/produits/prix', (req, res) => {
     }
 });
 
+
+
 app.get('/statistiques', (req, res) => {
     const statistiques = {
         utilisateurs: clients.length,
@@ -454,5 +461,9 @@ app.get('/statistiques', (req, res) => {
     };
     res.json(statistiques);
 });
+
+
+
+
 
 app.listen(3000, () => console.log('API running on http://localhost:3000'));

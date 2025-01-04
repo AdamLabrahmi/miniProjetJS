@@ -1,16 +1,24 @@
-// ADD ZONE
 document.getElementById('ajouter-zone-btn').addEventListener('click', function() {
     console.log('Bouton cliqué'); // Ajoutez cette ligne pour vérifier
 
     const zoneNomInput = document.getElementById('zone-nom');
     const villeZoneInput = document.getElementById('ville-zone');
-    const codeZoneInput = document.getElementById('code-zone');
 
-    if (zoneNomInput && villeZoneInput && codeZoneInput) {
+    if (zoneNomInput.value && villeZoneInput.value) {
+        let codeZone;
+
+        if (villeZoneInput.value === 'Casablanca') {
+            codeZone = 'CAS';
+        } else if (villeZoneInput.value === 'Rabat') {
+            codeZone = 'RAB';
+        } else {
+            codeZone = 'UNKNOWN'; // Valeur par défaut si la ville n'est pas reconnue
+        }
+
         const zone = {
             nom: zoneNomInput.value,
             ville: villeZoneInput.value,
-            code: codeZoneInput.value,
+            code: codeZone
         };
 
         fetch('http://localhost:3000/zones', {
@@ -20,15 +28,70 @@ document.getElementById('ajouter-zone-btn').addEventListener('click', function()
             },
             body: JSON.stringify(zone)
         })
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erreur lors de l\'ajout de la zone');
+            }
+            return response.json();
+        })
         .then(data => {
-            alert('Zone ajoutée avec succès');
-            document.getElementById('ajout-zone-form').reset();
+            showMessage('Zone ajoutée avec succès', 'success');
+            setTimeout(() => {
+                window.location.href = 'tabZ.html'; // Rediriger vers tabZ.html après ajout
+            }, 3000); // Redirection après 3 secondes
         })
         .catch(error => {
             console.error('Erreur:', error);
+            showMessage('Erreur lors de l\'ajout de la zone', 'error');
         });
     } else {
-        console.error('Un ou plusieurs éléments avec les IDs spécifiés sont introuvables.');
+        showMessage('Veuillez remplir tous les champs.', 'error');
     }
 });
+
+function showMessage(message, type) {
+    // Créer l'overlay pour le message
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    overlay.style.backdropFilter = 'blur(5px)';
+    overlay.style.zIndex = '999';
+
+    // Créer le message
+    const messageBox = document.createElement('div');
+    messageBox.textContent = message;
+    messageBox.style.position = 'fixed';
+    messageBox.style.top = '50%';
+    messageBox.style.left = '50%';
+    messageBox.style.transform = 'translate(-50%, -50%)';
+    messageBox.style.backgroundColor = 'white';
+    messageBox.style.color = 'black';
+    messageBox.style.padding = '40px';
+    messageBox.style.borderRadius = '10px';
+    messageBox.style.fontSize = '24px';
+    messageBox.style.boxShadow = '0 0 20px rgba(0, 0, 0, 0.2)';
+    messageBox.style.transition = 'opacity 0.5s ease';
+    messageBox.style.zIndex = '1000';
+
+    if (type === 'success') {
+        messageBox.style.backgroundColor = '#4CAF50'; // Couleur verte pour le succès
+        messageBox.style.color = 'white';
+    } else if (type === 'error') {
+        messageBox.style.backgroundColor = '#f44336'; // Couleur rouge pour l'erreur
+        messageBox.style.color = 'white';
+    }
+
+    overlay.appendChild(messageBox);
+    document.body.appendChild(overlay);
+
+    setTimeout(() => {
+        messageBox.style.opacity = '0';
+        setTimeout(() => {
+            document.body.removeChild(overlay);
+        }, 500);
+    }, 3000);
+}
