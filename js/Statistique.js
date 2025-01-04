@@ -26,3 +26,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Appeler la fonction pour récupérer les statistiques lorsque la page se charge
     recupererStatistiques();
 });
+
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
+}

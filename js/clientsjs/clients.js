@@ -63,7 +63,26 @@ async function deleteClient(id) {
     }
 }
 
-// ...existing code...
 
 // Charger les clients au démarrage
 loadClients();
+
+function downloadExcel() {
+    // Récupérer la table par son ID
+    const table = document.getElementById('clientsTable');
+    
+    // Convertir la table en données JSON
+    const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+    // Générer le fichier Excel
+    XLSX.writeFile(workbook, 'clients.xlsx');
+}
+
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
+}

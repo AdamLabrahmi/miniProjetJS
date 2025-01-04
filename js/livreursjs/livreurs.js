@@ -17,6 +17,7 @@ async function loadLivreurs() {
                 <td class="px-4 py-2 text-center border-b">${livreur.telephone}</td>
                 <td class="px-4 py-2 text-center border-b">${livreur.disponibilite}</td>
                 <td class="px-4 py-2 text-center border-b">${livreur.vehicule}</td>
+                <td class="px-4 py-2 text-center border-b">${livreur.zone_id}</td>
                 <td class="px-4 py-2 text-center border-b">
                     <button class="bg-yellow-500 text-white py-1 px-3 rounded mr-2" onclick="editlivreur(${livreur.id})">Modifier</button>
                     <button class="bg-red-500 text-white py-1 px-3 rounded" onclick="deletelivreur(${livreur.id})">Supprimer</button>
@@ -68,3 +69,24 @@ async function deletelivreur(id) {
 
 // Charger les clients au démarrage
 loadLivreurs();
+
+
+function downloadExcel() {
+    // Récupérer la table par son ID
+    const table = document.getElementById('livreursTableBody');
+    
+    // Convertir la table en données JSON
+    const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+    // Générer le fichier Excel
+    XLSX.writeFile(workbook, 'livreurs.xlsx');
+}
+
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
+}

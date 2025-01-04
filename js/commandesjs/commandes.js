@@ -75,3 +75,24 @@ async function deleteCommande(id) {
 
 // Charger les commandes au démarrage
 document.addEventListener('DOMContentLoaded', loadCommandes);
+
+    // downloadExcel;
+    function downloadExcel() {
+        // Récupérer la table par son ID
+        const commandes = document.getElementById('ordersTableBody');
+        
+        // Convertir la table en données JSON
+        const workbook = XLSX.utils.table_to_book(commandes, { sheet: "Sheet1" });
+    
+        // Générer le fichier Excel
+        XLSX.writeFile(workbook, 'commandes.xlsx');
+    }
+
+    function toggleDropdown(id) {
+        var dropdown = document.getElementById(id);
+        if (dropdown.classList.contains('hidden')) {
+            dropdown.classList.remove('hidden');
+        } else {
+            dropdown.classList.add('hidden');
+        }
+    }

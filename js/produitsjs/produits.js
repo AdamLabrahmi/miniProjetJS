@@ -67,3 +67,23 @@ async function deleteProduit(id) {
 
 // Charger les clients au démarrage
 loadProduits();
+
+function downloadExcel() {
+    // Récupérer la table par son ID
+    const table = document.getElementById('productsTableBody');
+    
+    // Convertir la table en données JSON
+    const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+    // Générer le fichier Excel
+    XLSX.writeFile(workbook, `produits.xlsx`);
+}
+
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
+}

@@ -1,30 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liste des Produits</title>
+    <title>Tableau de Bord - Livorix</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <link rel="icon" href="/imgs/logo.webp" type="image/webp">
 </head>
-<body class="bg-gray-100">
-    <div class="container mx-auto mt-10">
-        <h1 class="text-2xl font-bold mb-5">Liste des Produits</h1>
-        <table class="min-w-full bg-white">
-            <thead>
-                <tr>
-                    <th class="py-2 px-4 border-b">Nom du Produit</th>
-                    <th class="py-2 px-4 border-b">Description</th>
-                    <th class="py-2 px-4 border-b">Prix</th>
-                    <th class="py-2 px-4 border-b">Stock</th>
-                    <th class="py-2 px-4 border-b">Categorie</th>
-                    <th class="py-2 px-4 border-b">Actions</th>
-                </tr>
-            </thead>
-            <tbody id="productsTableBody">
-            </tbody>
-        </table>
-    </div>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-blue-500  text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img draggable="false" src="/imgs/logo.webp" alt="Logo" class="w-20 h-20 rounded-full border-2 border-gray-300 shadow-md">
+                <h1 class="text-2xl font-semibold">Livorix</h1> 
+            </div>
+            <nav class="flex items-center space-x-6">
+                <button id="menu-button" class="md:hidden hover:text-yellow-400" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i> Menu
+                </button>
+                <ul class="hidden md:flex space-x-6">
+                    <li><a href="pageAcc.html" class="hover:text-yellow-400"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <script src="../../js/produitsjs/produits.js"></script>
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <aside id="sidebar" class="bg-green-500  text-white w-full md:w-64 p-6 space-y-6 md:block hidden">
+            <h2 class="text-xl font-semibold">Menu</h2>
+            <ul>
+                <li><a href="../dashboard.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-home"></i> <strong>Page D'accueil</strong></a></li>
+                <li><a href="../ChoisieList.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-list"></i> <strong>Liste</strong></a></li>
+                <li class="relative">
+                    <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-ajout')"><i class="fas fa-plus"></i> <strong>Ajout</strong></a>
+                    <ul id="dropdown-ajout" class="hidden pl-4 space-y-2">
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Livreur</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Client</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Produit</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Commande</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Zone</a></li>
+                    </ul>
+                </li>
+                <li class="relative">
+                    <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-cherche')"><i class="fas fa-search"></i> <strong>Chercher</strong></a>
+                    <ul id="dropdown-cherche" class="hidden pl-4 space-y-2">
+                        <li><a href="Liste.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Tri</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Filtrer</a></li>
+                    </ul>
+                </li>
+                <li class="relative">
+                    <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-consulter')"><i class="fas fa-eye"></i> <strong>Consulter</strong></a>
+                    <ul id="dropdown-consulter" class="hidden pl-4 space-y-2">
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Livreur</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Client</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Produit</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Commande</a></li>
+                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Zone</a></li>
+                    </ul>
+                </li>
+                
+                <li><a href="Statistique.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-chart-bar"></i> <strong>Statistique</strong></a></li>
+                <li><a href="Graphe.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-chart-pie"></i> <strong>Graphe</strong></a></li>
+            </ul>
+        </aside>
+
+        <main class="bg-white flex-1 p-8">
+            <div class="container mx-auto mt-10">
+                <h1 class="text-2xl font-bold mb-5">Liste des Produits</h1>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead>
+                            <tr>
+                                <th class="py-2 px-4 border-b">Nom du Produit</th>
+                                <th class="py-2 px-4 border-b">Description</th>
+                                <th class="py-2 px-4 border-b">Prix</th>
+                                <th class="py-2 px-4 border-b">Stock</th>
+                                <th class="py-2 px-4 border-b">Categorie</th>
+                                <th class="py-2 px-4 border-b">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="productsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="flex justify-end mt-4">
+                    <button onclick="downloadExcel()" class="bg-blue-500 text-white px-4 py-2 rounded-md">Télécharger Excel</button>
+                </div>
+            </div>
+        </main>
+    </div>
+  
+        <script src="../../js/produitsjs/produits.js"></script>
+
 </body>
 </html>

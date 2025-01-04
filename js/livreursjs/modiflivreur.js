@@ -1,4 +1,4 @@
-let livreurId;
+let livreurId = null;
 
 // Fonction pour récupérer les données du livreur et remplir les champs de saisie
 function remplirChampsLivreur(id) {
@@ -20,7 +20,6 @@ function remplirChampsLivreur(id) {
 
             // Vérifier si l'ID de la zone est défini
             if (livreur.zone_id) {
-                // Récupérer le nom de la zone à partir de l'ID de la zone
                 fetch(`http://localhost:3000/zones/${livreur.zone_id}`)
                     .then(response => {
                         if (!response.ok) {

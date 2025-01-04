@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    let produitsData = [];
+
     // Charger les noms des clients
     fetch('http://localhost:3000/clients')
         .then(response => response.json())
@@ -6,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const clientSelect = document.getElementById('client-nom');
             clients.forEach(client => {
                 const option = document.createElement('option');
-                option.value = client.nom;
+                option.value = client.id; // Utiliser l'ID du client
                 option.textContent = client.nom;
                 clientSelect.appendChild(option);
             });
@@ -22,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const livreurSelect = document.getElementById('livreur-nom');
             livreurs.forEach(livreur => {
                 const option = document.createElement('option');
-                option.value = livreur.nom;
+                option.value = livreur.id; // Utiliser l'ID du livreur
                 option.textContent = livreur.nom;
                 livreurSelect.appendChild(option);
             });
@@ -31,10 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Erreur lors du chargement des livreurs:', error);
         });
 
-    // Charger les noms des produits
+    // Charger les noms des produits et leurs prix
     fetch('http://localhost:3000/produits')
         .then(response => response.json())
         .then(produits => {
+            produitsData = produits; // Stocker les données des produits
             const produitSelect = document.getElementById('produit-nom');
             produits.forEach(produit => {
                 const option = document.createElement('option');
@@ -46,75 +49,69 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error('Erreur lors du chargement des produits:', error);
         });
-});
 
-document.getElementById('ajouter-commande-btn').addEventListener('click', function() {
-    console.log('Bouton cliqué'); // Ajoutez cette ligne pour vérifier
+    // Mettre à jour le prix du produit lorsque le nom du produit est sélectionné
+    document.getElementById('produit-nom').addEventListener('change', function() {
+        const produitNom = this.value;
+        const produit = produitsData.find(p => p.nom === produitNom);
+        if (produit) {
+            document.getElementById('prix-produit').value = produit.prix;
+            calculerTotal();
+        }
+    });
 
-    const clientNom = document.getElementById('client-nom').value;
-    const livreurNom = document.getElementById('livreur-nom').value;
-    const produitNom = document.getElementById('produit-nom').value;
-    const quantite = parseInt(document.getElementById('quantite').value, 10);
+    // Calculer le total lorsque le prix ou la quantité change
+    document.getElementById('prix-produit').addEventListener('input', calculerTotal);
+    document.getElementById('quantite').addEventListener('input', calculerTotal);
 
-    // Fetch client ID
-    fetch(`http://localhost:3000/clients?nom=${clientNom}`)
-        .then(response => response.json())
-        .then(clientData => {
-            if (clientData.length === 0) {
-                throw new Error('Client non trouvé');
-            }
-            const clientId = clientData[0].id;
+    function calculerTotal() {
+        const prix = parseFloat(document.getElementById('prix-produit').value) || 0;
+        const quantite = parseInt(document.getElementById('quantite').value) || 0;
+        const total = prix * quantite;
+        document.getElementById('total').value = total;
+    }
 
-            // Fetch livreur ID
-            return fetch(`http://localhost:3000/livreurs?nom=${livreurNom}`)
-                .then(response => response.json())
-                .then(livreurData => {
-                    if (livreurData.length === 0) {
-                        throw new Error('Livreur non trouvé');
-                    }
-                    const livreurId = livreurData[0].id;
+    // Ajouter une commande
+    document.getElementById('ajouter-commande-btn').addEventListener('click', function() {
+        const clientId = document.getElementById('client-nom').value;
+        const livreurId = document.getElementById('livreur-nom').value;
+        const produitNom = document.getElementById('produit-nom').value;
+        const prixProduit = document.getElementById('prix-produit').value;
+        const quantite = document.getElementById('quantite').value;
+        const total = document.getElementById('total').value;
 
-                    // Fetch product price
-                    return fetch(`http://localhost:3000/produits?nom=${encodeURIComponent(produitNom)}`)
-                        .then(response => {
-                            if (!response.ok) {
-                                throw new Error('Produit non trouvé');
-                            }
-                            return response.json();
-                        })
-                        .then(produitData => {
-                            const prix = produitData[0].prix;
+        if (clientId && livreurId && produitNom && prixProduit && quantite && total) {
+            const commande = {
+                client_id: clientId,
+                livreur_id: livreurId,
+                produits: [{ nom: produitNom, prix: prixProduit, quantite: quantite }],
+                statut: 'En cours',
+                date_creation: new Date().toISOString().split('T')[0],
+                total: total
+            };
 
-                            // Create commande with client, livreur IDs and product price
-                            const commande = {
-                                client_id: clientId,
-                                livreur_id: livreurId,
-                                produits: [{
-                                    nom: produitNom,
-                                    quantite: quantite,
-                                    prix: prix
-                                }],
-                                statut: 'en cours', // Par défaut en cours
-                                date_creation: new Date().toISOString() // Date d'aujourd'hui
-                            };
-
-                            return fetch('http://localhost:3000/commandes', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json'
-                                },
-                                body: JSON.stringify(commande)
-                            });
-                        });
-                });
-        })
-        .then(response => response.json())
-        .then(data => {
-            alert('Commande ajoutée avec succès');
-            document.getElementById('ajout-commande-form').reset();
-        })
-        .catch(error => {
-            console.error('Erreur:', error);
-            alert(`Erreur: ${error.message}`);
-        });
+            // Envoyer la commande au serveur
+            fetch('http://localhost:3000/commandes', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(commande)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Commande ajoutée avec succès.');
+                    window.location.href = 'tabCom.html'; // Rediriger vers tabCom.html après ajout
+                } else {
+                    alert('Erreur lors de l\'ajout de la commande.');
+                }
+            })
+            .catch(error => {
+                console.error('Erreur lors de l\'ajout de la commande:', error);
+                alert('Erreur lors de l\'ajout de la commande.');
+            });
+        } else {
+            alert('Veuillez remplir tous les champs.');
+        }
+    });
 });

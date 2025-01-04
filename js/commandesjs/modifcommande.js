@@ -16,13 +16,12 @@ function remplirChampsCommande(id) {
             const clientNomSelect = document.getElementById('commande-client-nom');
             const livreurNomSelect = document.getElementById('commande-livreur-nom');
             const nomProduitSelect = document.getElementById('nom-produit');
-            const categorieProduitSelect = document.getElementById('categorie-produit');
             const prixProduitInput = document.getElementById('prix-produit');
             const quantiteProduitInput = document.getElementById('quantite-produit');
             const statutSelect = document.getElementById('commande-statut');
             const dateCreationInput = document.getElementById('commande-date-creation');
 
-            if (clientNomSelect && livreurNomSelect && nomProduitSelect && categorieProduitSelect && prixProduitInput && quantiteProduitInput && statutSelect && dateCreationInput) {
+            if (clientNomSelect && livreurNomSelect && nomProduitSelect && prixProduitInput && quantiteProduitInput && statutSelect && dateCreationInput) {
                 // Charger les noms des clients dans le menu déroulant
                 fetch('http://localhost:3000/clients')
                     .then(response => response.json())
@@ -86,22 +85,6 @@ function remplirChampsCommande(id) {
                         alert('Erreur lors de la récupération des noms des produits.');
                     });
 
-                // Charger les catégories des produits dans le menu déroulant
-                fetch('http://localhost:3000/categories')
-                    .then(response => response.json())
-                    .then(categories => {
-                        categories.forEach(categorie => {
-                            const option = document.createElement('option');
-                            option.value = categorie.id;
-                            option.textContent = categorie.nom;
-                            categorieProduitSelect.appendChild(option);
-                        });
-                    })
-                    .catch(error => {
-                        console.error('Erreur lors de la récupération des catégories des produits:', error);
-                        alert('Erreur lors de la récupération des catégories des produits.');
-                    });
-
                 statutSelect.value = commande.statut;
                 dateCreationInput.value = commande.date_creation;
             } else {
@@ -121,17 +104,16 @@ function modifCommande() {
     const clientId = document.getElementById('commande-client-nom').value;
     const livreurId = document.getElementById('commande-livreur-nom').value;
     const nomProduit = document.getElementById('nom-produit').value;
-    const categorieProduit = document.getElementById('categorie-produit').value;
     const prixProduit = document.getElementById('prix-produit').value;
     const quantiteProduit = document.getElementById('quantite-produit').value;
     const statut = document.getElementById('commande-statut').value;
     const dateCreation = document.getElementById('commande-date-creation').value;
 
-    if (clientId && livreurId && nomProduit && categorieProduit && prixProduit && quantiteProduit && statut && dateCreation) {
+    if (clientId && livreurId && nomProduit && prixProduit && quantiteProduit && statut && dateCreation) {
         const commande = {
             client_id: clientId,
             livreur_id: livreurId,
-            produits: [{ nom: nomProduit, categorie: categorieProduit, prix: prixProduit, quantite: quantiteProduit }],
+            produits: [{ nom: nomProduit, prix: prixProduit, quantite: quantiteProduit }],
             statut: statut,
             date_creation: dateCreation
         };

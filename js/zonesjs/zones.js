@@ -56,3 +56,23 @@ async function deletezone(id) {
 
 // Charger les clients au démarrage
 loadZones();
+
+function downloadExcel() {
+    // Récupérer la table par son ID
+    const table = document.getElementById('zonesTableBody');
+    
+    // Convertir la table en données JSON
+    const workbook = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+
+    // Générer le fichier Excel
+    XLSX.writeFile(workbook, `zones.xlsx`);
+}
+
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
+}

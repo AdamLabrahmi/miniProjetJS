@@ -8,29 +8,31 @@ app.use(cors());
 
 // Données simulées
 let livreurs = [
-    { id: 1, nom: "Ali", prenom: "Benomar", telephone: "0612345678", disponibilite: "Disponible", vehicule: "Moto", zone_id: 1 },
-    { id: 2, nom: "Sara", prenom: "El Mansouri", telephone: "0623456789", disponibilite: "Occupé", vehicule: "Voiture", zone_id: 2 },
-    { id: 3, nom: "Hassan", prenom: "Ouali", telephone: "0634567890", disponibilite: "Disponible", vehicule: "Camion", zone_id: 3 },
-    { id: 4, nom: "Zineb", prenom: "Bouchra", telephone: "0645678901", disponibilite: "Occupé", vehicule: "Vélo", zone_id: 4 },
-    { id: 5, nom: "Youssef", prenom: "Khalid", telephone: "0656789012", disponibilite: "Disponible", vehicule: "Moto", zone_id: 5 },
-    { id: 6, nom: "Amine", prenom: "Rachid", telephone: "0667890123", disponibilite: "Occupé", vehicule: "Voiture", zone_id: 6 },
-    { id: 7, nom: "Naima", prenom: "Fadwa", telephone: "0678901234", disponibilite: "Disponible", vehicule: "Camion", zone_id: 7 },
-    { id: 8, nom: "Hamid", prenom: "Mehdi", telephone: "0689012345", disponibilite: "Disponible", vehicule: "Vélo", zone_id: 8 },
-    { id: 9, nom: "Khadija", prenom: "Samira", telephone: "0690123456", disponibilite: "Occupé", vehicule: "Moto", zone_id: 9 },
-    { id: 10, nom: "Mohamed", prenom: "Ali", telephone: "0601234567", disponibilite: "Disponible", vehicule: "Voiture", zone_id: 10 }
+    { id: 1, nom: "Benomar", prenom: "Saad", telephone: "0612345678", disponibilite: "Disponible", vehicule: "Moto", zone_id: 1 },
+    { id: 2, nom: "El Mansouri", prenom: "Sara", telephone: "0623456789", disponibilite: "Occupé", vehicule: "Voiture", zone_id: 2 },
+    { id: 3, nom: "Ouali", prenom: "Hassan", telephone: "0634567890", disponibilite: "Disponible", vehicule: "Camion", zone_id: 3 },
+    { id: 4, nom: "Bouchra", prenom: "Zineb", telephone: "0645678901", disponibilite: "Occupé", vehicule: "Vélo", zone_id: 4 },
+    { id: 5, nom: "Khalid", prenom: "Youssef", telephone: "0656789012", disponibilite: "Disponible", vehicule: "Moto", zone_id: 5 },
+    { id: 6, nom: "Rachidi", prenom: "Amine", telephone: "0667890123", disponibilite: "Occupé", vehicule: "Voiture", zone_id: 6 },
+    { id: 7, nom: "Naimi", prenom: "Fadwa", telephone: "0678901234", disponibilite: "Disponible", vehicule: "Camion", zone_id: 7 },
+    { id: 8, nom: "Hamidi", prenom: "Mehdi", telephone: "0689012345", disponibilite: "Disponible", vehicule: "Vélo", zone_id: 8 },
+    { id: 9, nom: "Kharja", prenom: "Samira", telephone: "0690123456", disponibilite: "Occupé", vehicule: "Moto", zone_id: 9 },
+    { id: 10, nom: "Othmani", prenom: "Mohamed", telephone: "0601234567", disponibilite: "Disponible", vehicule: "Voiture", zone_id: 10 }
 ];
+
+
 
 let clients = [
     { id: 1, nom: "Bourak", prenom: "Ali", telephone: "0693403054", email: "alibusinessbourak@gmail.com", adresse: "Casablanca" },
-    { id: 2, nom: "Amina", prenom: "Elhajji", telephone: "0622334455", email: "amina@gmail.com", adresse: "Rabat" },
-    { id: 3, nom: "Omar", prenom: "Saidi", telephone: "0633445566", email: "omar@gmail.com", adresse: "Rabat" },
-    { id: 4, nom: "Karim", prenom: "Bouzidi", telephone: "0644556677", email: "karim@gmail.com", adresse: "Casablanca" },
-    { id: 5, nom: "Salma", prenom: "Bensouda", telephone: "0655667788", email: "salma@gmail.com", adresse: "Rabat" },
-    { id: 6, nom: "Nabil", prenom: "Haddadi", telephone: "0666778899", email: "nabil@gmail.com", adresse: "Rabat" },
-    { id: 7, nom: "Fatima", prenom: "Zahra", telephone: "0677889900", email: "fatima@gmail.com", adresse: "Casablanca" },
-    { id: 8, nom: "Rachid", prenom: "Benali", telephone: "0688990011", email: "rachid@gmail.com", adresse: "Casablanca" },
-    { id: 9, nom: "Laila", prenom: "Mouline", telephone: "0699001122", email: "laila@gmail.com", adresse: "Casablanca" },
-    { id: 10, nom: "Samir", prenom: "Fakhreddine", telephone: "0600112233", email: "samir@gmail.com", adresse: "Rabat" }
+    { id: 2, nom: "Elhajji", prenom: "Amina", telephone: "0622334455", email: "amina@gmail.com", adresse: "Rabat" },
+    { id: 3, nom: "Saidi", prenom: "Omar", telephone: "0633445566", email: "omar@gmail.com", adresse: "Rabat" },
+    { id: 4, nom: "Bouzidi", prenom: "Karim", telephone: "0644556677", email: "karim@gmail.com", adresse: "Casablanca" },
+    { id: 5, nom: "Bensouda", prenom: "Salma", telephone: "0655667788", email: "salma@gmail.com", adresse: "Rabat" },
+    { id: 6, nom: "Haddadi", prenom: "Nabil", telephone: "0666778899", email: "nabil@gmail.com", adresse: "Rabat" },
+    { id: 7, nom: "Tachfine", prenom: "Zahra", telephone: "0677889900", email: "fatima@gmail.com", adresse: "Casablanca" },
+    { id: 8, nom: "Benali", prenom: "Rachid", telephone: "0688990011", email: "rachid@gmail.com", adresse: "Casablanca" },
+    { id: 9, nom: "Mouline", prenom: "Laila", telephone: "0699001122", email: "laila@gmail.com", adresse: "Casablanca" },
+    { id: 10, nom: "Fakhreddine", prenom: "Samir", telephone: "0600112233", email: "samir@gmail.com", adresse: "Rabat" }
 ];
 
 let produits = [
@@ -66,7 +68,7 @@ let zones = [
     { id: 4, nom: "Hay Riad", ville: "Rabat", code: "RAB" },
     { id: 5, nom: "Ain Sebaa", ville: "Casablanca", code: "CAS" },
     { id: 6, nom: "Yacoub El Mansour", ville: "Rabat", code: "RAB" },
-    { id: 7, nom: "Oulfa", ville: "Casablanca", code: "CAS" },
+    { id: 7, nom: "Sbata", ville: "Casablanca", code: "CAS" },
     { id: 8, nom: "Hassan", ville: "Rabat", code: "RAB" },
     { id: 9, nom: "Anfa", ville: "Casablanca", code: "CAS" },
     { id: 10, nom: "Souissi", ville: "Rabat", code: "RAB" }
@@ -92,15 +94,26 @@ app.get('/livreurs/:id', (req, res) => {
     }
 });
 
-app.get('/zones/:id', (req, res) => {
-    const zoneId = parseInt(req.params.id);
-    const zone = zones.find(z => z.id === zoneId);
+// app.get('/zones/:id', (req, res) => {
+//     const zoneId = parseInt(req.params.id);
+//     const zone = zones.find(z => z.id === zoneId);
+//     if (zone) {
+//         res.json(zone);
+//     } else {
+//         res.status(404).json({ message: 'Zone non trouvée' });
+//     }
+// });
+
+app.get('/zones/id', (req, res) => {
+    const zoneNom = req.query.nom;
+    const zone = zones.find(z => z.nom.toLowerCase() === zoneNom.toLowerCase());
     if (zone) {
-        res.json(zone);
+        res.json({ id: zone.id });
     } else {
         res.status(404).json({ message: 'Zone non trouvée' });
     }
 });
+// ...existing code...
 
 app.get('/zones', (req, res) => {
     res.json(zones);
@@ -114,7 +127,42 @@ app.get('/zones/id', (req, res) => {
     } else {
         res.status(404).json({ message: 'Zone non trouvée' });
     }
+});// ...existing code...
+// app.put('/livreurs/:id', (req, res) => {
+//     const livreurId = parseInt(req.params.id);
+//     const livreurModifie = req.body;
+//     const livreur = livreurs.find(l => l.id === livreurId);
+//     if (livreur) {
+//         livreur.nom = livreurModifie.nom;
+//         livreur.prenom = livreurModifie.prenom;
+//         livreur.telephone = livreurModifie.telephone;
+//         livreur.disponibilite = livreurModifie.disponibilite;
+//         livreur.vehicule = livreurModifie.vehicule;
+//         livreur.zone_id = livreurModifie.zone_id;
+//         res.status(200).json(livreur);
+//     } else {
+//         res.status(404).json({ message: 'Livreur non trouvé' });
+//     }
+// });
+
+app.put('/livreurs/:id', (req, res) => {
+    const livreurId = parseInt(req.params.id);
+    const livreurModifie = req.body;
+    const livreur = livreurs.find(l => l.id === livreurId);
+    if (livreur) {
+        livreur.nom = livreurModifie.nom;
+        livreur.prenom = livreurModifie.prenom;
+        livreur.telephone = livreurModifie.telephone;
+        livreur.disponibilite = livreurModifie.disponibilite;
+        livreur.vehicule = livreurModifie.vehicule;
+        livreur.zone_id = livreurModifie.zone_id;
+        res.status(200).json(livreur);
+    } else {
+        res.status(404).json({ message: 'Livreur non trouvé' });
+    }
 });
+// ...existing code...
+
 
 // =================
 
@@ -396,13 +444,13 @@ app.get('/produits/prix', (req, res) => {
 
 app.get('/statistiques', (req, res) => {
     const statistiques = {
-        utilisateurs: 100, // Exemple de données
-        livreurs: 50,
-        commandesLivrees: 200,
-        commandesEnCours: 30,
-        commandesAnnulees: 10,
-        nombreZones: 15,
-        nombreProduits: 120
+        utilisateurs: clients.length,
+        livreurs: livreurs.length,
+        commandesLivrees: commandes.filter(c => c.statut === 'Livrée').length,
+        commandesEnCours: commandes.filter(c => c.statut === 'En cours').length,
+        commandesAnnulees: commandes.filter(c => c.statut === 'Annulée').length,
+        nombreZones: zones.length,
+        nombreProduits: produits.length
     };
     res.json(statistiques);
 });
