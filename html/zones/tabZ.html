@@ -63,6 +63,10 @@
 
         <main class="bg-white flex-1 p-8">
             <div class="container mx-auto mt-10">
+                <div class="mb-4">
+                    <label for="searchCity" class="block text-gray-700 font-bold mb-2">Rechercher par Ville:</label>
+                    <input type="text" id="searchCity" onkeyup="searchZonesByCity()" placeholder="Entrez le nom de la ville" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
         <h1 class="text-2xl font-bold mb-5">Liste des Zones</h1>
         <table class="min-w-full bg-white">
             <thead>

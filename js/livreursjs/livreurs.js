@@ -198,3 +198,19 @@ function toggleDropdown(id) {
         dropdown.classList.add('hidden');
     }
 }
+
+function searchLivreur() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const tableBody = document.getElementById('livreursTableBody');
+    const rows = tableBody.getElementsByTagName('tr');
+
+    Array.from(rows).forEach(row => {
+        const nom = row.cells[0].textContent.toLowerCase();
+        const prenom = row.cells[1].textContent.toLowerCase();
+        if (nom.includes(searchInput) || prenom.includes(searchInput)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}

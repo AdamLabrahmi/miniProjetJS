@@ -187,3 +187,23 @@ function toggleDropdown(id) {
         dropdown.classList.add('hidden');
     }
 }
+
+function searchZonesByCity() {
+    const searchInput = document.getElementById('searchCity');
+    if (!searchInput) {
+        console.error('Element with ID "searchCity" not found.');
+        return;
+    }
+    const filter = searchInput.value.toLowerCase();
+    const tableBody = document.getElementById('zonesTableBody');
+    const rows = tableBody.getElementsByTagName('tr');
+
+    Array.from(rows).forEach(row => {
+        const ville = row.cells[1].textContent.toLowerCase();
+        if (ville.includes(filter)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}

@@ -207,3 +207,20 @@ loadCommandes();
         dropdown.classList.add('hidden');
     }
 }
+
+// Fonction pour filtrer les commandes
+function searchOrders() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const tableBody = document.getElementById('ordersTableBody');
+    const rows = tableBody.getElementsByTagName('tr');
+
+    Array.from(rows).forEach(row => {
+        const clientName = row.cells[0].textContent.toLowerCase();
+        const livreurName = row.cells[1].textContent.toLowerCase();
+        if (clientName.includes(searchInput) || livreurName.includes(searchInput)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+}

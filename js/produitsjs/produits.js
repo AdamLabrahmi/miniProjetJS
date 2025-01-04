@@ -202,3 +202,21 @@ function toggleDropdown(id) {
         dropdown.classList.add('hidden');
     }
 }
+
+
+function searchProduct() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const tableBody = document.getElementById('productsTableBody');
+    const rows = tableBody.getElementsByTagName('tr');
+
+    for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName('td');
+        const productName = cells[0].textContent || cells[0].innerText;
+        if (productName.toLowerCase().indexOf(filter) > -1) {
+            rows[i].style.display = '';
+        } else {
+            rows[i].style.display = 'none';
+        }
+    }
+}

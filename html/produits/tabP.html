@@ -64,26 +64,29 @@
 
         <main class="bg-white flex-1 p-8">
             <div class="container mx-auto mt-10">
-                <h1 class="text-2xl font-bold mb-5">Liste des Produits</h1>
-                <div class="overflow-x-auto">
-                    <table class="min-w-full bg-white">
-                        <thead>
-                            <tr>
-                                <th class="py-2 px-4 border-b">Nom du Produit</th>
-                                <th class="py-2 px-4 border-b">Description</th>
-                                <th class="py-2 px-4 border-b">Prix</th>
-                                <th class="py-2 px-4 border-b">Stock</th>
-                                <th class="py-2 px-4 border-b">Categorie</th>
-                                <th class="py-2 px-4 border-b">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="productsTableBody">
-                        </tbody>
-                    </table>
-                </div>
-                <div class="flex justify-end mt-4">
-                    <button onclick="downloadExcel()" class="bg-blue-500 text-white px-4 py-2 rounded-md">Télécharger Excel</button>
-                </div>
+            <div class="mb-5">
+                <input type="text" id="searchInput" onkeyup="searchProduct()" placeholder="Rechercher un produit par nom" class="px-4 py-2 border rounded-md w-full">
+            </div>
+            <h1 class="text-2xl font-bold mb-5">Liste des Produits</h1>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                <thead>
+                    <tr>
+                    <th class="py-2 px-4 border-b">Nom du Produit</th>
+                    <th class="py-2 px-4 border-b">Description</th>
+                    <th class="py-2 px-4 border-b">Prix</th>
+                    <th class="py-2 px-4 border-b">Stock</th>
+                    <th class="py-2 px-4 border-b">Categorie</th>
+                    <th class="py-2 px-4 border-b">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="productsTableBody">
+                </tbody>
+                </table>
+            </div>
+            <div class="flex justify-end mt-4">
+                <button onclick="downloadExcel()" class="bg-blue-500 text-white px-4 py-2 rounded-md">Télécharger Excel</button>
+            </div>
             </div>
         </main>
     </div>
