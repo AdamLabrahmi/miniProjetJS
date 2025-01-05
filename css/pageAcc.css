@@ -1,0 +1,24 @@
+.text-xl {
+    font-size: 1.25rem; /* Agrandir le texte */
+}
+
+@keyframes color-change {
+    0% { color: #4a5568; } /* gray-700 */
+    25% { color: #f56565; } /* red-500 */
+    50% { color: #48bb78; } /* green-500 */
+    75% { color: #4299e1; } /* blue-500 */
+    100% { color: #4a5568; } /* gray-700 */
+}
+
+.animate-color-change {
+    animation: color-change 5s infinite;
+}
+@keyframes move-horizontal {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+.animate-horizontal {
+    display: flex;
+    animation: move-horizontal 20s linear infinite;
+}

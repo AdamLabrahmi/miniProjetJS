@@ -37,11 +37,11 @@
                 <li class="relative">
                     <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-ajout')"><i class="fas fa-plus"></i> <strong>Ajout</strong></a>
                     <ul id="dropdown-ajout" class="hidden pl-4 space-y-2">
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Livreur</a></li>
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Client</a></li>
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Produit</a></li>
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Commande</a></li>
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Zone</a></li>
+                        <li><a href="livreurs/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Livreur</a></li>
+                        <li><a href="clientss/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Client</a></li>
+                        <li><a href="produits/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Produit</a></li>
+                        <li><a href="commandes/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Commande</a></li>
+                        <li><a href="zones/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Zone</a></li>
                     </ul>
                 </li>
                 
@@ -61,39 +61,74 @@
             </ul>
         </aside>
 
-        <main class="bg-white flex-1 p-8">
+        <main class="bg-gray-100 flex-1 p-8">
             <div class="container mx-auto p-4">
-            <h1 class="text-4xl font-extrabold mb-8 text-center text-blue-600">Statistiques de l'application</h1>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-6">
-                <div class="bg-blue-100 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-                <h2 class="text-2xl font-semibold mb-2 text-blue-700">Utilisateurs</h2>
-                <p id="stat-utilisateurs" class="text-blue-900 text-4xl">0</p>
+                <h1 class="text-4xl font-extrabold mb-8 text-center text-blue-600">Statistiques de l'application</h1>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
+                        <div class="bg-blue-500 text-white p-4 rounded-full">
+                            <i class="fas fa-users text-3xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-semibold text-blue-700">Clients</h2>
+                            <p id="stat-clients" class="text-blue-900 text-4xl">0</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
+                        <div class="bg-green-500 text-white p-4 rounded-full">
+                            <i class="fas fa-truck text-3xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-semibold text-green-700">Livreurs</h2>
+                            <p id="stat-livreurs" class="text-green-900 text-4xl">0</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
+                        <div class="bg-yellow-500 text-white p-4 rounded-full">
+                            <i class="fas fa-box text-3xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-semibold text-yellow-700">Commandes livrées</h2>
+                            <p id="stat-commandes-livrees" class="text-yellow-900 text-4xl">0</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
+                        <div class="bg-red-500 text-white p-4 rounded-full">
+                            <i class="fas fa-spinner text-3xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-semibold text-red-700">Commandes en cours</h2>
+                            <p id="stat-commandes-en-cours" class="text-red-900 text-4xl">0</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
+                        <div class="bg-purple-500 text-white p-4 rounded-full">
+                            <i class="fas fa-times text-3xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-semibold text-purple-700">Commandes annulées</h2>
+                            <p id="stat-commandes-annulees" class="text-purple-900 text-4xl">0</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
+                        <div class="bg-teal-500 text-white p-4 rounded-full">
+                            <i class="fas fa-map-marker-alt text-3xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-semibold text-teal-700">Nombre de zones</h2>
+                            <p id="stat-nombre-zones" class="text-teal-900 text-4xl">0</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
+                        <div class="bg-orange-500 text-white p-4 rounded-full">
+                            <i class="fas fa-cubes text-3xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-semibold text-orange-700">Nombre de produits</h2>
+                            <p id="stat-nombre-produits" class="text-orange-900 text-4xl">0</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-green-100 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-                <h2 class="text-2xl font-semibold mb-2 text-green-700">Livreurs</h2>
-                <p id="stat-livreurs" class="text-green-900 text-4xl">0</p>
-                </div>
-                <div class="bg-yellow-100 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-                <h2 class="text-2xl font-semibold mb-2 text-yellow-700">Commandes livrées</h2>
-                <p id="stat-commandes-livrees" class="text-yellow-900 text-4xl">0</p>
-                </div>
-                <div class="bg-red-100 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-                <h2 class="text-2xl font-semibold mb-2 text-red-700">Commandes en cours</h2>
-                <p id="stat-commandes-en-cours" class="text-red-900 text-4xl">0</p>
-                </div>
-                <div class="bg-purple-100 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-                <h2 class="text-2xl font-semibold mb-2 text-purple-700">Commandes annulées</h2>
-                <p id="stat-commandes-annulees" class="text-purple-900 text-4xl">0</p>
-                </div>
-                <div class="bg-teal-100 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-                <h2 class="text-2xl font-semibold mb-2 text-teal-700">Nombre de zones</h2>
-                <p id="stat-nombre-zones" class="text-teal-900 text-4xl">0</p>
-                </div>
-                <div class="bg-orange-100 p-8 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
-                <h2 class="text-2xl font-semibold mb-2 text-orange-700">Nombre de produits</h2>
-                <p id="stat-nombre-produits" class="text-orange-900 text-4xl">0</p>
-                </div>
-            </div>
             </div>
         </main>
     </div>

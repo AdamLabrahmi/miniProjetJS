@@ -40,11 +40,11 @@
                 <li class="relative">
                     <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-ajout')"><i class="fas fa-plus"></i> <strong>Ajout</strong></a>
                     <ul id="dropdown-ajout" class="hidden pl-4 space-y-2">
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Livreur</a></li>
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Client</a></li>
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Produit</a></li>
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Commande</a></li>
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Zone</a></li>
+                        <li><a href="ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Livreur</a></li>
+                        <li><a href="../clientss/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Client</a></li>
+                        <li><a href="../produits/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Produit</a></li>
+                        <li><a href="../commandes/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Commande</a></li>
+                        <li><a href="../zones/ajout.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Ajout Zone</a></li>
                     </ul>
                 </li>
                 
@@ -53,9 +53,7 @@
                     <ul id="dropdown-consulter" class="hidden pl-4 space-y-2">
                         <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Livreur</a></li>
                         <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Client</a></li>
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Produit</a></li>
                         <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Commande</a></li>
-                        <li><a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md">Consulter Zone</a></li>
                     </ul>
                 </li>
                 
@@ -93,15 +91,22 @@
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="disponibilite">
-                                Disponibilite
+                                Disponibilité
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="disponibilite" type="text" placeholder="disponibilite">
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="disponibilite" name="disponibilite">
+                                <option value="Disponible">Disponible</option>
+                                <option value="Occupé">Occupé</option>
+                            </select>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="vehicule">
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="disponibilite">
                                 Vehicule
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="vehicule" type="text" placeholder="vehicule">
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="vehicule" name="vehicule">
+                                <option value="Vélo">Vélo</option>
+                                <option value="Moto">Moto</option>
+                                <option value="Camion">Camion</option>
+                            </select>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="nomzone-select">

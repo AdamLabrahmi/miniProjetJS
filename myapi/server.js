@@ -406,11 +406,36 @@ app.post('/zones', (req, res) => {
     res.status(201).json(zone);
 });
 
+app.get('/zones/:id', (req, res) => {
+    const zoneId = parseInt(req.params.id);
+    const zone = zones.find(z => z.id === zoneId);
+    if (zone) {
+        res.json(zone);
+    } else {
+        res.status(404).json({ message: 'Zone non trouvée' });
+    }
+});
+
+
 app.post('/zones', (req, res) => {
     const nouvelleZone = req.body;  // Zone envoyée dans la requête
     nouvelleZone.id = zones.length + 1; // Générez un nouvel ID
     zones.push(nouvelleZone); // Ajoutez la zone à la liste
     res.status(201).json(nouvelleZone); // Réponse avec la zone ajoutée
+});
+
+app.put('/zones/:id', (req, res) => {
+    const zoneId = parseInt(req.params.id);
+    const zoneModifiee = req.body;
+    const zone = zones.find(z => z.id === zoneId);
+    if (zone) {
+        zone.nom = zoneModifiee.nom;
+        zone.ville = zoneModifiee.ville;
+        zone.code = zoneModifiee.code;
+        res.status(200).json(zone);
+    } else {
+        res.status(404).json({ message: 'Zone non trouvée' });
+    }
 });
 
 app.delete('/zones/:id', (req, res) => {

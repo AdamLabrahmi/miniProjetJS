@@ -94,3 +94,8 @@ function toggleDropdown(id) {
         dropdown.classList.add('hidden');
     }
 }
+
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('hidden');
+}

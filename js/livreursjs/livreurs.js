@@ -31,13 +31,18 @@ async function loadLivreurs() {
 
 // Fonction pour modifier un client
 function editlivreur(id) {
-    // alert('Modification du client avec ID: ' + id);
     window.location.href = `modification.html?id=${id}`;
-    // Exemple : rediriger vers une page de modification ou afficher un formulaire
 }
 // Fonction pour supprimer un client
 // ...existing code...
-
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
+}
 
 // Fonction pour supprimer un client
 async function deletelivreur(id) {
@@ -190,14 +195,7 @@ function downloadExcel() {
     XLSX.writeFile(workbook, 'livreurs.xlsx');
 }
 
-function toggleDropdown(id) {
-    var dropdown = document.getElementById(id);
-    if (dropdown.classList.contains('hidden')) {
-        dropdown.classList.remove('hidden');
-    } else {
-        dropdown.classList.add('hidden');
-    }
-}
+
 
 function searchLivreur() {
     const searchInput = document.getElementById('searchInput').value.toLowerCase();
@@ -213,4 +211,11 @@ function searchLivreur() {
             row.style.display = 'none';
         }
     });
+}
+
+
+
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('hidden');
 }

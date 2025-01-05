@@ -27,6 +27,9 @@ async function loadZones() {
     }
 }
 
+function editzone(id) {
+    window.location.href = `modification.html?id=${id}`;
+}
 
 
 // Fonction pour supprimer un client
@@ -206,4 +209,29 @@ function searchZonesByCity() {
             row.style.display = 'none';
         }
     });
+}
+
+// function searchZonesByCode() {
+//     const searchInput = document.getElementById('searchCode');
+//     if (!searchInput) {
+//         console.error('Element with ID "searchCode" not found.');
+//         return;
+//     }
+//     const filter = searchInput.value.toLowerCase();
+//     const tableBody = document.getElementById('zonesTableBody');
+//     const rows = tableBody.getElementsByTagName('tr');
+
+//     Array.from(rows).forEach(row => {
+//         const code = row.cells[2].textContent.toLowerCase();
+//         if (code.includes(filter)) {
+//             row.style.display = '';
+//         } else {
+//             row.style.display = 'none';
+//         }
+//     });
+// }
+
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('hidden');
 }

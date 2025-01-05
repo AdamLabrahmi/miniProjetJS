@@ -33,6 +33,7 @@ function remplirChampsCommande(id) {
                             clientNomSelect.appendChild(option);
                         });
                         clientNomSelect.value = commande.client_id;
+                        clientNomSelect.disabled = true; // Désactiver le sélecteur après remplissage
                     })
                     .catch(error => {
                         console.error('Erreur lors de la récupération des noms des clients:', error);
@@ -50,6 +51,7 @@ function remplirChampsCommande(id) {
                             livreurNomSelect.appendChild(option);
                         });
                         livreurNomSelect.value = commande.livreur_id;
+                        livreurNomSelect.disabled = true; // Désactiver le sélecteur après remplissage
                     })
                     .catch(error => {
                         console.error('Erreur lors de la récupération des noms des livreurs:', error);
@@ -205,3 +207,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ajouter un écouteur d'événement pour le bouton de modification
     document.getElementById('modifier-btn').addEventListener('click', modifCommande);
 });
+
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
+}
+
+
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('hidden');
+}

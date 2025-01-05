@@ -100,6 +100,21 @@ function showMessage(message, type) {
         messageBox.style.opacity = '0';
         setTimeout(() => {
             document.body.removeChild(overlay);
+            window.location.href = 'tabL.html'; 
         }, 500);
     }, 3000);
+}
+
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
+}
+
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('hidden');
 }

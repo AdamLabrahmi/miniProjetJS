@@ -1,63 +1,66 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Charger les catégories
-    fetch('http://localhost:3000/produits')
-        .then(response => response.json())
-        .then(produits => {
-            const categorieSelect = document.getElementById('categorie');
-            const categories = new Set(); // Utiliser un Set pour stocker les catégories uniques
+    const form = document.getElementById('modificationForm');
+    const zoneNameInput = document.getElementById('zoneName');
+    const villeInput = document.getElementById('ville');
+    const codeInput = document.getElementById('code');
 
-            produits.forEach(produit => {
-                if (!categories.has(produit.categorie)) {
-                    categories.add(produit.categorie);
-                    const option = document.createElement('option');
-                    option.value = produit.categorie; // Utiliser l'ID de la catégorie
-                    option.textContent = produit.categorie;
-                    categorieSelect.appendChild(option);
-                }
-            });
-        })
-        .catch(error => {
-            console.error('Erreur lors du chargement des catégories:', error);
-        });
+    // Récupérer l'ID de la zone à partir de l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const zoneId = urlParams.get('id');
 
-    // Ajouter un produit
-    document.getElementById('ajouter-produit-btn').addEventListener('click', function() {
-        const nom = document.getElementById('nom').value;
-        const description = document.getElementById('description').value;
-        const prix = document.getElementById('prix').value;
-        const stock = document.getElementById('stock').value;
-        const categorie = document.getElementById('categorie').value;
+    // Fonction pour charger les données de la zone
+    async function loadZoneData(id) {
+        try {
+            const response = await fetch(`http://localhost:3000/zones/${id}`);
+            if (!response.ok) {
+                throw new Error('Erreur lors de la récupération des données de la zone');
+            }
+            const zone = await response.json();
+            zoneNameInput.value = zone.nom;
+            villeInput.value = zone.ville;
+            codeInput.value = zone.code;
+        } catch (error) {
+            console.error('Erreur lors du chargement des données de la zone:', error);
+            alert('Erreur lors du chargement des données de la zone.');
+        }
+    }
 
-        if (nom && description && prix && stock && categorie) {
-            const produit = {
-                nom: nom,
-                description: description,
-                prix: prix,
-                stock: stock,
-                categorie: categorie
-            };
+    // Charger les données de la zone au démarrage
+    if (zoneId) {
+        loadZoneData(zoneId);
+    } else {
+        alert('ID de la zone manquant dans l\'URL.');
+    }
 
-            fetch('http://localhost:3000/produits', {
-                method: 'POST',
+    // Gérer la soumission du formulaire
+    form.addEventListener('submit', async function(event) {
+        event.preventDefault();
+        const updatedZone = {
+            nom: zoneNameInput.value,
+            ville: villeInput.value,
+            code: codeInput.value
+        };
+
+        try {
+            const response = await fetch(`http://localhost:3000/zones/${zoneId}`, {
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(produit)
-            })
-            .then(response => response.json())
-            .then(data => {
-                showMessage('Produit ajouté avec succès.', 'success');
-                document.getElementById('ajout-produit-form').reset();
-                setTimeout(() => {
-                    window.location.href = 'tabP.html'; // Rediriger vers tabP.html après ajout
-                }, 3000);
-            })
-            .catch(error => {
-                console.error('Erreur:', error);
-                showMessage('Erreur lors de l\'ajout du produit.', 'error');
+                body: JSON.stringify(updatedZone)
             });
-        } else {
-            showMessage('Veuillez remplir tous les champs.', 'error');
+
+            if (response.ok) {
+                showMessage('Zone modifiée avec succès.', 'success');
+                setTimeout(() => {
+                    window.location.href = 'tabZ.html'; 
+                }, 3000);
+            } else {
+                showMessage('Erreur lors de la modification de la zone.', 'error');
+            }
+        } catch (error) {
+            console.error('Erreur lors de la modification de la zone:', error);
+            showMessage('Erreur lors de la modification de la zone.', 'error');
         }
     });
 

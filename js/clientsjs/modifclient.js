@@ -129,3 +129,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // Ajouter un écouteur d'événement pour le bouton de modification
     document.getElementById('modifier-btn').addEventListener('click', modifClient);
 });
+
+
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
+}
+
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('hidden');
+}

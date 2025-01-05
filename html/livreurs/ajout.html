@@ -36,7 +36,7 @@
             <h2 class="text-xl font-semibold">Menu</h2>
             <ul>
                 <li><a href="../dashboard.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-home"></i> <strong>Page D'accueil</strong></a></li>
-                <li><a href="ChoisieList.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-list"></i> <strong>Liste</strong></a></li>
+                <li><a href="../ChoisieList.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-list"></i> <strong>Liste</strong></a></li>
                 <li class="relative">
                     <a href="#" class="block py-2 hover:bg-blue-600 px-4 rounded-md" onclick="toggleDropdown('dropdown-ajout')"><i class="fas fa-plus"></i> <strong>Ajout</strong></a>
                     <ul id="dropdown-ajout" class="hidden pl-4 space-y-2">
@@ -91,17 +91,24 @@
                             </label>
                             <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="telephone" type="text" placeholder="Téléphone">
                         </div>
-                        <div class="mb-4">
+                                                <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="disponibilite">
                                 Disponibilité
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="disponibilite" type="text" placeholder="Disponibilité">
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="disponibilite" name="disponibilite">
+                                <option value="Disponible">Disponible</option>
+                                <option value="Occupé">Occupé</option>
+                            </select>
                         </div>
                         <div class="mb-4">
-                            <label class="block text-gray-700 text-sm font-bold mb-2" for="vehicule">
-                                Véhicule
+                            <label class="block text-gray-700 text-sm font-bold mb-2" for="disponibilite">
+                                Vehicule
                             </label>
-                            <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="vehicule" type="text" placeholder="Véhicule">
+                            <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="vehicule" name="vehicule">
+                                <option value="Vélo">Vélo</option>
+                                <option value="Moto">Moto</option>
+                                <option value="Camion">Camion</option>
+                            </select>
                         </div>
                         <div class="mb-4">
                             <label class="block text-gray-700 text-sm font-bold mb-2" for="zone-select">

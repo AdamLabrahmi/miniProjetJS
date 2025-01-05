@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return response.json();
             })
             .then(statistiques => {
-                document.getElementById('stat-utilisateurs').textContent = statistiques.utilisateurs;
+                document.getElementById('stat-clients').textContent = statistiques.utilisateurs;
                 document.getElementById('stat-livreurs').textContent = statistiques.livreurs;
                 document.getElementById('stat-commandes-livrees').textContent = statistiques.commandesLivrees;
                 document.getElementById('stat-commandes-en-cours').textContent = statistiques.commandesEnCours;
@@ -34,4 +34,9 @@ function toggleDropdown(id) {
     } else {
         dropdown.classList.add('hidden');
     }
+}
+
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('hidden');
 }
