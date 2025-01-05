@@ -1,4 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
+    if (localStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.href = '../html/index.html'; // Rediriger vers la page de connexion
+    }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
     fetch('http://localhost:3000/statistiques')
         .then(response => response.json())
         .then(data => {

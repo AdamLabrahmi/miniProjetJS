@@ -3,13 +3,13 @@ function consulterClient() {
     const prenom = document.getElementById('prenom').value;
 
     if (nom && prenom) {
-        fetch(`http://localhost:3000/client`)
+        fetch(`http://localhost:3000/clients`)
             .then(response => response.json())
             .then(clients => {
                 const client = clients.find(c => c.nom.toLowerCase() === nom.toLowerCase() && c.prenom.toLowerCase() === prenom.toLowerCase());
                 if (client) {
                     console.log('Client trouvé:', client);
-                    fetch(`http://localhost:3000/commande`)
+                    fetch(`http://localhost:3000/commandes`)
                         .then(response => response.json())
                         .then(commandes => {
                             console.log('Commandes récupérées:', commandes);
