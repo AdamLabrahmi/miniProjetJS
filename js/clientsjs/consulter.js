@@ -49,3 +49,16 @@ function consulterClient() {
         document.getElementById('resultat').innerHTML = '<p class="text-red-500">Veuillez entrer le nom et le prénom du client.</p>';
     }
 }
+function toggleDropdown(id) {
+    var dropdown = document.getElementById(id);
+    if (dropdown.classList.contains('hidden')) {
+        dropdown.classList.remove('hidden');
+    } else {
+        dropdown.classList.add('hidden');
+    }
+}
+
+function toggleMenu() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('hidden');
+}

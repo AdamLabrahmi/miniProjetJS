@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = 'index.html'; 
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     fetch('http://localhost:3000/statistiques')
         .then(response => response.json())

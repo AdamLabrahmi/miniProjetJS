@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 });
                         });
                     } else {
-                        ordersList.innerHTML = '<p class="text-red-500">Aucune commande trouvée pour ce produit.</p>';
+                        ordersList.innerHTML = '<p class="text-red-500 text-center font-semibold mt-4">Aucune commande trouvée pour ce produit.</p>';
                     }
                 })
                 .catch(error => {

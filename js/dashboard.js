@@ -1,8 +1,6 @@
-document.addEventListener('DOMContentLoaded', function() {
-    if (localStorage.getItem('isLoggedIn') !== 'true') {
-        window.location.href = '../html/index.html'; // Rediriger vers la page de connexion
-    }
-});
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = 'index.html'; 
+}
 
 document.addEventListener('DOMContentLoaded', function() {
     fetch('http://localhost:3000/statistiques')
@@ -105,4 +103,9 @@ function toggleMenu() {
 function toggleDropdown(id) {
     const dropdown = document.getElementById(id);
     dropdown.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = 'index.html';
 }
