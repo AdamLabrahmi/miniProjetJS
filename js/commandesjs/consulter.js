@@ -1,3 +1,8 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
     if (localStorage.getItem('isLoggedIn') !== 'true') {
         window.location.href = '../html/index.html'; // Rediriger vers la page de connexion
@@ -81,4 +86,9 @@ function toggleDropdown(id) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }

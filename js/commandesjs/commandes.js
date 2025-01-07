@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
 // ListerCommandes lakhar
 async function loadCommandes() {
     try {
@@ -21,6 +25,23 @@ async function loadCommandes() {
 
             const total = commande.produits.reduce((acc, produit) => acc + (produit.prix * produit.quantite), 0);
 
+            // Déterminer la couleur du statut
+            let statutColor = '';
+            switch (commande.statut.toLowerCase()) {
+                case 'annulée':
+                    statutColor = 'bg-red-500 text-white'; // Rouge pour "annulée"
+                    break;
+                case 'en cours':
+                    statutColor = 'bg-yellow-500 text-white'; // Jaune pour "en cours"
+                    break;
+                case 'livrée':
+                    statutColor = 'bg-green-500 text-white'; // Vert pour "livrée"
+                    break;
+                default:
+                    statutColor = 'bg-gray-500 text-white'; // Gris pour les autres statuts
+                    break;
+            }
+
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td class="px-4 py-2 text-center border-b">${client.nom}</td>
@@ -29,7 +50,9 @@ async function loadCommandes() {
                 <td class="px-4 py-2 text-center border-b">${commande.produits.map(p => p.quantite).join(', ')}</td>
                 <td class="px-4 py-2 text-center border-b">${commande.produits.map(p => p.prix).join(', ')}</td>
                 <td class="px-4 py-2 text-center border-b">${total}</td>
-                <td class="px-4 py-2 text-center border-b">${commande.statut}</td>
+                <td class="px-4 py-2 text-center border-b">
+                    <span class="px-2 py-1 rounded-full ${statutColor}">${commande.statut}</span>
+                </td>
                 <td class="px-4 py-2 text-center border-b">
                     <button class="bg-yellow-500 text-white py-1 px-3 rounded mr-2" onclick="editCommande(${commande.id})">Modifier</button>
                     <button class="bg-red-500 text-white py-1 px-3 rounded" onclick="deleteCommande(${commande.id})">Supprimer</button>
@@ -181,7 +204,7 @@ function showMessage(message, type) {
         setTimeout(() => {
             document.body.removeChild(overlay);
         }, 500);
-    }, 3000);
+    }, 1500);
 }
 loadCommandes();
 // Charger les commandes au démarrage
@@ -229,4 +252,9 @@ function searchOrders() {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }

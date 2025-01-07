@@ -3,6 +3,8 @@ if (localStorage.getItem('isLoggedIn') !== 'true') {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    const loadingIcon = document.getElementById('loading-icon');
+
     fetch('http://localhost:3000/statistiques')
         .then(response => response.json())
         .then(data => {
@@ -54,18 +56,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Télécharger le graphique en tant que PNG
             document.getElementById('download-png').addEventListener('click', function() {
+                showLoadingIcon();
                 const link = document.createElement('a');
                 link.href = myChart.toBase64Image();
                 link.download = 'graphique.png';
                 link.click();
+                setTimeout(hideLoadingIcon, 2000); // Masquer après 2 secondes
             });
 
             // Télécharger le graphique en tant que PDF
             document.getElementById('download-pdf').addEventListener('click', function() {
+                showLoadingIcon();
                 html2canvas(document.getElementById('myChart')).then(canvas => {
                     const imgData = canvas.toDataURL('image/png');
                     const pdf = new jsPDF('landscape');
-                    const imgWidth = 290; // Largeur de l'image dans le PDF
+                    const imgWidth = 290;
                     const pageHeight = pdf.internal.pageSize.height;
                     const imgHeight = canvas.height * imgWidth / canvas.width;
                     let heightLeft = imgHeight;
@@ -82,6 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
 
                     pdf.save('graphique.pdf');
+                    hideLoadingIcon();
                 });
             });
         })
@@ -89,6 +95,16 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Erreur lors de la récupération des statistiques:', error);
         });
 });
+
+function showLoadingIcon() {
+    const loadingIcon = document.getElementById('loading-icon');
+    loadingIcon.classList.remove('hidden');
+}
+
+function hideLoadingIcon() {
+    const loadingIcon = document.getElementById('loading-icon');
+    loadingIcon.classList.add('hidden');
+}
 
 function toggleDropdown(id) {
     var dropdown = document.getElementById(id);
@@ -102,4 +118,9 @@ function toggleDropdown(id) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = 'index.html';
 }

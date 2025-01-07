@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     let produitsData = [];
 
@@ -103,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     showMessage('Commande ajoutée avec succès.', 'success');
                     setTimeout(() => {
                         window.location.href = 'tabCom.html'; // Rediriger vers tabCom.html après ajout
-                    }, 3000);
+                    }, 1500);
                 } else {
                     showMessage('Erreur lors de l\'ajout de la commande.', 'error');
                 }
@@ -161,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 document.body.removeChild(overlay);
             }, 500);
-        }, 3000);
+        }, 1500);
     }
 });
 
@@ -178,4 +182,9 @@ function toggleDropdown(id) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }

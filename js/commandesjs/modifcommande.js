@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
 let commandeId;
 
 // Fonction pour récupérer les données de la commande et remplir les champs de saisie
@@ -133,7 +137,7 @@ function modifCommande() {
                 showMessage('Commande modifiée avec succès.', 'success');
                 setTimeout(() => {
                     window.location.href = 'tabCom.html'; // Rediriger vers tabCom.html après modification
-                }, 3000);
+                }, 1500);
             } else {
                 showMessage('Erreur lors de la modification de la commande.', 'error');
             }
@@ -191,7 +195,7 @@ function showMessage(message, type) {
         setTimeout(() => {
             document.body.removeChild(overlay);
         }, 500);
-    }, 3000);
+    }, 1500);
 }
 
 // Appeler la fonction pour remplir les champs de saisie lorsque la page se charge
@@ -221,4 +225,9 @@ function toggleDropdown(id) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }

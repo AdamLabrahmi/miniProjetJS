@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
 document.getElementById('ajouter-client-btn').addEventListener('click', function() {
     console.log('Bouton cliqué'); // Ajoutez cette ligne pour vérifier
     const nom = document.getElementById('nom').value;
@@ -60,7 +64,7 @@ document.getElementById('ajouter-client-btn').addEventListener('click', function
                     document.body.removeChild(overlay);
                     window.location.href = 'tabC.html'; 
                 }, 500);
-            }, 5000);
+            }, 1500);
         })
         .catch(error => {
             console.error('Erreur:', error);
@@ -115,7 +119,7 @@ function showMessage(message, type) {
         setTimeout(() => {
             document.body.removeChild(overlay);
         }, 500);
-    }, 3000);
+    }, 1500);
 }
 
 function toggleDropdown(id) {
@@ -130,4 +134,9 @@ function toggleDropdown(id) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }

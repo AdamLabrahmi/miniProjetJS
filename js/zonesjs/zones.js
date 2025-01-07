@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
 // ListerZOnes
 async function loadZones() {
     try {
@@ -165,7 +169,7 @@ function showMessage(message, type) {
         setTimeout(() => {
             document.body.removeChild(overlay);
         }, 500);
-    }, 3000);
+    }, 1500);
 }
 
 // Charger les clients au démarrage
@@ -234,4 +238,9 @@ function searchZonesByCity() {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }

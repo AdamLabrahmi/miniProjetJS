@@ -14,7 +14,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
 
         setTimeout(() => {
             window.location.href = '../html/dashboard.html'; 
-        }, 3000); 
+        }, 1000); 
     } else {
         const errorMessage = document.getElementById('error-message');
         errorMessage.classList.remove('hidden');
@@ -23,6 +23,6 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
             errorMessage.classList.add('hidden');
             username.value = '';
             password.value = '';
-        }, 3000); 
+        }, 1000); 
     }
 });

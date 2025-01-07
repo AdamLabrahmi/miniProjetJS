@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
 let livreurId = null;
 
 // Fonction pour récupérer les données du livreur et remplir les champs de saisie
@@ -117,7 +121,7 @@ function modifLivreur() {
                         showMessage('Livreur modifié avec succès.', 'success');
                         setTimeout(() => {
                             window.location.href = 'tabL.html'; // Rediriger vers tabL.html après modification
-                        }, 3000);
+                        }, 1500);
                     } else {
                         showMessage('Erreur lors de la modification du livreur.', 'error');
                     }
@@ -198,7 +202,7 @@ function showMessage(message, type) {
         setTimeout(() => {
             document.body.removeChild(overlay);
         }, 500);
-    }, 3000);
+    }, 1500);
 }
 
 function toggleDropdown(id) {
@@ -213,4 +217,9 @@ function toggleDropdown(id) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }

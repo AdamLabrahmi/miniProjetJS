@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Charger les noms des zones
     fetch('http://localhost:3000/zones')
@@ -102,7 +106,7 @@ function showMessage(message, type) {
             document.body.removeChild(overlay);
             window.location.href = 'tabL.html'; 
         }, 500);
-    }, 3000);
+    }, 1500);
 }
 
 function toggleDropdown(id) {
@@ -117,4 +121,9 @@ function toggleDropdown(id) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }

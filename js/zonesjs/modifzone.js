@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('modificationForm');
     const zoneNameInput = document.getElementById('zoneName');
@@ -54,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 showMessage('Zone modifiée avec succès.', 'success');
                 setTimeout(() => {
                     window.location.href = 'tabZ.html'; 
-                }, 3000);
+                }, 1500);
             } else {
                 showMessage('Erreur lors de la modification de la zone.', 'error');
             }
@@ -108,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 document.body.removeChild(overlay);
             }, 500);
-        }, 3000);
+        }, 1500);
     }
 });
 
@@ -124,4 +128,9 @@ function toggleDropdown(id) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }

@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = 'index.html'; 
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Fonction pour récupérer les statistiques depuis le serveur
     function recupererStatistiques() {
@@ -39,4 +43,9 @@ function toggleDropdown(id) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = 'index.html';
 }

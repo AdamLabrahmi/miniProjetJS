@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
 document.getElementById('ajouter-zone-btn').addEventListener('click', function() {
     console.log('Bouton cliqué'); // Ajoutez cette ligne pour vérifier
 
@@ -38,7 +42,7 @@ document.getElementById('ajouter-zone-btn').addEventListener('click', function()
             showMessage('Zone ajoutée avec succès', 'success');
             setTimeout(() => {
                 window.location.href = 'tabZ.html'; // Rediriger vers tabZ.html après ajout
-            }, 3000); // Redirection après 3 secondes
+            }, 1500); // Redirection après 3 secondes
         })
         .catch(error => {
             console.error('Erreur:', error);
@@ -93,7 +97,7 @@ function showMessage(message, type) {
         setTimeout(() => {
             document.body.removeChild(overlay);
         }, 500);
-    }, 3000);
+    }, 1500);
 }
 
 function toggleDropdown(id) {
@@ -109,4 +113,9 @@ function toggleDropdown(id) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }

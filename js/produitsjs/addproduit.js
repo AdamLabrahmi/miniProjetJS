@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Charger les catégories
     fetch('http://localhost:3000/produits')
@@ -50,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById('ajout-produit-form').reset();
                 setTimeout(() => {
                     window.location.href = 'tabP.html'; // Rediriger vers tabP.html après ajout
-                }, 3000);
+                }, 1500);
             })
             .catch(error => {
                 console.error('Erreur:', error);
@@ -105,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 document.body.removeChild(overlay);
             }, 500);
-        }, 3000);
+        }, 1500);
     }
 });
 
@@ -121,4 +125,9 @@ function toggleDropdown(id) {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }

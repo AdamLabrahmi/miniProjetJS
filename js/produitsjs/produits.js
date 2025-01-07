@@ -1,3 +1,7 @@
+if (localStorage.getItem('isLoggedIn') !== 'true') {
+    window.location.href = '../../html/index.html'; 
+}
+
 // ListerProduits
 async function loadProduits() {
     try {
@@ -131,7 +135,7 @@ async function deleteProduit(id) {
         setTimeout(() => {
             document.body.removeChild(overlay);
         }, 500);
-    }, 5000); // Disparaît après 5 secondes
+    }, 1500); // Disparaît après 5 secondes
 }
 
 function showMessage(message, type) {
@@ -178,7 +182,7 @@ function showMessage(message, type) {
         setTimeout(() => {
             document.body.removeChild(overlay);
         }, 500);
-    }, 3000);
+    }, 1500);
 }
 // Charger les clients au démarrage
 loadProduits();
@@ -226,4 +230,9 @@ function searchProduct() {
 function toggleMenu() {
     const sidebar = document.getElementById('sidebar');
     sidebar.classList.toggle('hidden');
+}
+
+function logout() {
+    localStorage.removeItem('isLoggedIn');
+    window.location.href = '../../html/index.html';
 }
