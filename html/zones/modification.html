@@ -21,18 +21,18 @@
                 <h1 class="text-2xl font-semibold">Livorix</h1> 
             </div>
             <nav class="flex items-center space-x-6">
-                <button id="menu-button" class="md:hidden hover:text-yellow-400" onclick="toggleMenu()">
+                <button id="menu-button" class="xl:hidden hover:text-yellow-400" onclick="toggleMenu()">
                     <i class="fas fa-bars"></i> Menu
                 </button>
-                <ul class="hidden md:flex space-x-6">
+                <ul class="hidden xl:flex space-x-6">
                     <li><a href="../pageAcc.html" onclick="logout()" class="hover:text-yellow-400"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <div class="flex flex-col md:flex-row min-h-screen">
-        <aside id="sidebar" class="bg-green-500  text-white w-full md:w-64 p-6 space-y-6 md:block hidden">
+    <div class="flex flex-col xl:flex-row min-h-screen">
+        <aside id="sidebar" class="bg-green-500  text-white w-full xl:w-64 p-6 space-y-6 xl:block hidden">
             <h2 class="text-xl font-semibold">Menu</h2>
             <ul>
                 <li><a href="../dashboard.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-home"></i> <strong>Tableau de Bord</strong></a></li>
@@ -77,7 +77,7 @@
                     <input type="text" id="code" name="code" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 bg-gray-100" readonly>
                 </div>
                 <div>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Enregistrer les modifications</button>
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md">Modifier</button>
                 </div>
             </form>
         </main>

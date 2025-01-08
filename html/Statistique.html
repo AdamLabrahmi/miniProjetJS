@@ -19,7 +19,7 @@
                 <h1 class="text-2xl font-semibold">Livorix</h1> 
             </div>
             <nav class="flex items-center space-x-6">
-                <button id="menu-button" class="md:hidden hover:text-yellow-400" onclick="toggleMenu()">
+                <button id="menu-button" class="xl:hidden hover:text-yellow-400" onclick="toggleMenu()">
                     <i class="fas fa-bars"></i> Menu
                 </button>
                 <ul class="hidden md:flex space-x-6">
@@ -29,8 +29,8 @@
         </div>
     </header>
 
-    <div class="flex flex-col md:flex-row min-h-screen">
-        <aside id="sidebar" class="bg-green-500 text-white w-full md:w-64 p-6 space-y-6 md:block hidden">
+    <div class="flex flex-col xl:flex-row min-h-screen">
+        <aside id="sidebar" class="bg-green-500 text-white w-full xl:w-64 p-6 space-y-6 xl:block hidden">
             <h2 class="text-xl font-semibold">Menu</h2>
             <ul>
                 <li><a href="dashboard.html" class="block py-2 hover:bg-blue-600 px-4 rounded-md"><i class="fas fa-home"></i> <strong>Tableau de Bord</strong></a></li>
@@ -59,76 +59,93 @@
             </ul>
         </aside>
 
-        <main class="bg-gray-100 flex-1 p-8">
-            <div class="container mx-auto p-4">
-                <h1 class="text-4xl font-extrabold mb-8 text-center text-blue-600">Statistiques de l'application</h1>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
-                        <div class="bg-blue-500 text-white p-4 rounded-full">
-                            <i class="fas fa-users text-3xl"></i>
+        <main class="bg-white flex-1 p-4 sm:p-6 md:p-8">
+            <div class="container mx-auto">
+                <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-4 sm:mb-6 md:mb-8 text-center text-blue-600">
+                    Statistiques de l'application
+                </h1>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+                    <!-- Clients -->
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-blue-500 text-white p-3 sm:p-4 rounded-full flex-shrink-0">
+                            <i class="fas fa-users text-xl sm:text-2xl md:text-3xl"></i>
                         </div>
                         <div>
-                            <h2 class="text-2xl font-semibold text-blue-700">Clients</h2>
-                            <p id="stat-clients" class="text-blue-900 text-4xl">0</p>
+                            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-blue-700">Clients</h2>
+                            <p id="stat-clients" class="text-blue-900 text-xl sm:text-2xl md:text-3xl">0</p>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
-                        <div class="bg-green-500 text-white p-4 rounded-full">
-                            <i class="fas fa-truck text-3xl"></i>
+        
+                    <!-- Livreurs -->
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-green-500 text-white p-3 sm:p-4 rounded-full flex-shrink-0">
+                            <i class="fas fa-truck text-xl sm:text-2xl md:text-3xl"></i>
                         </div>
                         <div>
-                            <h2 class="text-2xl font-semibold text-green-700">Livreurs</h2>
-                            <p id="stat-livreurs" class="text-green-900 text-4xl">0</p>
+                            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-green-700">Livreurs</h2>
+                            <p id="stat-livreurs" class="text-green-900 text-xl sm:text-2xl md:text-3xl">0</p>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
-                        <div class="bg-yellow-500 text-white p-4 rounded-full">
-                            <i class="fas fa-box text-3xl"></i>
+        
+                    <!-- Commandes livrées -->
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-yellow-500 text-white p-3 sm:p-4 rounded-full flex-shrink-0">
+                            <i class="fas fa-box text-xl sm:text-2xl md:text-3xl"></i>
                         </div>
                         <div>
-                            <h2 class="text-2xl font-semibold text-yellow-700">Commandes livrées</h2>
-                            <p id="stat-commandes-livrees" class="text-yellow-900 text-4xl">0</p>
+                            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-yellow-700">Commandes livrées</h2>
+                            <p id="stat-commandes-livrees" class="text-yellow-900 text-xl sm:text-2xl md:text-3xl">0</p>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
-                        <div class="bg-red-500 text-white p-4 rounded-full">
-                            <i class="fas fa-spinner text-3xl"></i>
+        
+                    <!-- Commandes en cours -->
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-red-500 text-white p-3 sm:p-4 rounded-full flex-shrink-0">
+                            <i class="fas fa-spinner text-xl sm:text-2xl md:text-3xl"></i>
                         </div>
                         <div>
-                            <h2 class="text-2xl font-semibold text-red-700">Commandes en cours</h2>
-                            <p id="stat-commandes-en-cours" class="text-red-900 text-4xl">0</p>
+                            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-red-700">Commandes en cours</h2>
+                            <p id="stat-commandes-en-cours" class="text-red-900 text-xl sm:text-2xl md:text-3xl">0</p>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
-                        <div class="bg-purple-500 text-white p-4 rounded-full">
-                            <i class="fas fa-times text-3xl"></i>
+        
+                    <!-- Commandes annulées -->
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-purple-500 text-white p-3 sm:p-4 rounded-full flex-shrink-0">
+                            <i class="fas fa-times text-xl sm:text-2xl md:text-3xl"></i>
                         </div>
                         <div>
-                            <h2 class="text-2xl font-semibold text-purple-700">Commandes annulées</h2>
-                            <p id="stat-commandes-annulees" class="text-purple-900 text-4xl">0</p>
+                            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-purple -700">Commandes annulées</h2>
+                            <p id="stat-commandes-annulees" class="text-purple-900 text-xl sm:text-2xl md:text-3xl">0</p>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
-                        <div class="bg-teal-500 text-white p-4 rounded-full">
-                            <i class="fa-solid fa-location-dot"></i>
+        
+                    <!-- Nombre de zones -->
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-pink-500 text-white p-3 sm:p-4 rounded-full flex-shrink-0">
+                            <i class="fas fa-map-marker-alt text-xl sm:text-2xl md:text-3xl"></i>
                         </div>
-                        <div>
-                            <h2 class="text-2xl font-semibold text-teal-700">Nombre de zones</h2>
-                            <p id="stat-nombre-zones" class="text-teal-900 text-4xl">0</p>
+                        <div class="flex-grow">
+                            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-pink-700 mb-1">Nombre de zones</h2>
+                            <p id="stat-nombre-zones" class="text-pink-900 text-xl sm:text-2xl md:text-3xl">0</p>
                         </div>
                     </div>
-                    <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
-                        <div class="bg-orange-500 text-white p-4 rounded-full">
-                            <i class="fas fa-times text-3xl"></i>
+        
+                    <!-- Nombre de produits -->
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg flex items-center space-x-4 hover:shadow-xl transition-shadow duration-300">
+                        <div class="bg-blue-500 text-white p-3 sm:p-4 rounded-full flex-shrink-0">
+                            <i class="fas fa-box text-xl sm:text-2xl md:text-3xl"></i>
                         </div>
-                        <div>
-                            <h2 class="text-2xl font-semibold text-orange-700">Nombre de produits</h2>
-                            <p id="stat-nombre-produits" class="text-orange-900 text-4xl">0</p>
+                        <div class="flex-grow">
+                            <h2 class="text-base sm:text-lg md:text-xl font-semibold text-blue-700 mb-1">Nombre de produits</h2>
+                            <p id="stat-nombre-produits" class="text-blue-900 text-xl sm:text-2xl md:text-3xl">0</p>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
+        
+
     </div>
   
     <script src="../js/Statistique.js"></script>

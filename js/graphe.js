@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const myChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Utilisateurs', 'Livreurs', 'Commandes Livrées', 'Commandes En Cours', 'Commandes Annulées', 'Zones', 'Produits'],
+                    labels: ['Clients', 'Livreurs', 'Commandes Livrées', 'Commandes En Cours', 'Commandes Annulées', 'Zones', 'Produits'],
                     datasets: [{
                         label: 'Statistiques',
                         data: [
